@@ -1,0 +1,37 @@
+%----------------------------------------------------------------------------%
+%----------------------- Refactoring back into J ----------------------------%
+%----------------------------------------------------------------------------%
+
+\section{Refactoring back into $\mathbf{J}$}
+\label{sec:refactoring}
+
+We want to gather together our terms in $\theta$ and $\mathbf{A}$ into something
+gauge invariant, to eradicate all of this non-physicality in the equations. To
+do this, let's look at what $-\frac{m \mathbf{J}^2}{2\rho^2}$ expands out to:
+
+\begin{align}
+    - \frac{m \mathbf{J}}{2 \rho^2}
+    &=- \frac{\hbar^2}{2m} \left[ \nabla \theta
+      - \frac{e}{\hbar c} \mathbf{A} \right]^2
+        \\
+    &=- \frac{\hbar^2}{2m} \left[ \left( \nabla \theta \right)^2
+      + \frac{e^2}{\hbar^2 c^2} A^2
+      - \frac{2e}{\hbar c}\mathbf{A} \cdot \nabla \theta \right]
+        \\
+    &=- \frac{\hbar^2}{2m} \left( \nabla \theta \right)^2
+      - \frac{e^2}{2mc^2} A^2
+      + \frac{\hbar e}{mc} \mathbf{A} \cdot \nabla \theta
+\end{align}
+
+We now recognise this as the $\theta$ and $\mathbf{A}$ terms in Equation
+\ref{eqn:end-of-sec-4}, allowing us to finally write out Schr\"odinger's
+equation in a gauge invariant form:
+
+\begin{align}
+    \frac{\partial}{\partial t} \left( \frac{m \mathbf{J}}{\rho} \right)
+        &= \nabla \left[
+           \frac{\hbar^2}{4m \rho} \nabla^2 \rho
+         - \frac{\hbar^2}{8m \rho^2} \left( \nabla \rho \right)^2
+         - \frac{m \mathbf{J}^2}{2\rho^2} \right]
+         + e \mathbf{E}
+\end{align}

@@ -1,0 +1,41 @@
+%----------------------------------------------------------------------------%
+%------------------------------ Introduction --------------------------------%
+%----------------------------------------------------------------------------%
+
+\section{Introduction}
+
+We want to now derive a gauge invariant form of the Schr\"odinger Equation for a
+particle in an electromagnetic field, which eradicates the gauge-dependent
+$\Psi$ and $\mathbf{A}$ in favour of $\rho$, $\mathbf{J}$ and $E$.
+
+We know that:
+
+\begin{align}
+    \rho &\defeq |\Psi|^2 = \Psi^* \Psi \\
+    \mathrm{and} ~ \mathbf{J} &\defeq \frac{1}{2m} \Psi^*\left( - \imath \hbar \nabla -
+    \frac{e}{c} \mathbf{A} \right) \Psi + \frac{1}{2m}\Psi\left(\imath \hbar
+    \nabla - \frac{e}{c} \mathbf{A} \right) \Psi^*
+\end{align}
+
+And we want to obtain the following gauge invariant version of the Schr\"odinger
+equation, dubbed the GISE:
+
+\begin{equation}
+    \frac{\partial}{\partial t} \left( \frac{m \mathbf{J}}{\rho} \right) =
+    \nabla \left[ \frac{\hbar^2}{4m \rho} \nabla^2 \rho - \frac{\hbar^2}{8m
+        \rho^2} \left( \nabla \rho \right)^2 - \frac{m \mathbf{J}^2}{2 \rho^2}
+    \right] + e \mathbf{E}
+    \label{eqn:gise}
+\end{equation}
+
+There are 5 main steps in this procedure:
+
+\begin{description}
+    \item[Section \ref{sec:rewriting}]{Rewriting $\Psi$ in terms of $\rho$ and $\theta$}
+    \item[Section \ref{sec:electric}]{Replacing vector potential with electric
+        field and scalar potential}
+    \item[Section \ref{sec:inputting}]{Inputting the Schr\"odinger equation, and
+        rearranging both right hand side (Section \ref{sec:schroedinger/rhs}) and
+        the left hand side (Section \ref{sec:schroedinger/lhs})}
+    \item[Section \ref{sec:refactoring}]{Refactoring back into $\mathbf{J}$}
+\end{description}

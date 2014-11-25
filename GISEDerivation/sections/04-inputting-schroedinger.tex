@@ -1,0 +1,301 @@
+%----------------------------------------------------------------------------%
+%-------------------- Inputting Schroedinger equation------------------------%
+%----------------------------------------------------------------------------%
+
+\section{Inputting the Schr\"odinger equation}
+\label{sec:inputting}
+
+We now recognise that $\dot \theta$ can be given by the Schr\"odinger equation:
+
+\begin{equation}
+    \imath \hbar \dot \Psi = \frac{1}{2m} \left(-\imath \hbar \nabla - \frac{e}{c}
+    \mathbf{A} \right)^2 \Psi + e \phi \Psi
+    \label{eqn:schroedinger}
+\end{equation}
+
+But first we need to rearrange the Schr\"odinger equation into a form more
+useful to us, involving $\theta$ and $\rho$ instead of $\Psi$.
+
+To do this, we can start by expanding the round brackets:
+
+\begin{align}
+    \left( - \imath \hbar \nabla - \frac{e}{c} \mathbf{A} \right)^2 \Psi &=
+    \left( - \imath \hbar \nabla \right)^2 \Psi + \frac{e^2}{c^2} A^2 \Psi \\
+    & \hspace{11.5pt} + \left( \imath \hbar \nabla \right) \cdot \left( \frac{e}{c} \mathbf{A}
+    \right) \Psi + \left( \frac{e}{c} \mathbf{A} \right) \cdot \left( \imath \hbar \nabla
+    \right)
+    \Psi \\
+    &= - \hbar^2 \nabla^2 \Psi + \frac{e^2}{c^2} A^2 \Psi + \frac{ \imath \hbar
+    e}{c} \nabla \cdot \left( \mathbf{A} \Psi \right) + \frac{ \imath \hbar e}{c}
+    \mathbf{A} \cdot \nabla \Psi \\
+    &= - \hbar^2 \nabla^2 \Psi + \frac{e^2}{c^2} A^2 \Psi + \frac{ \imath \hbar
+    e}{c} \left( \nabla \cdot \mathbf{A} \right) \Psi + \frac{ 2\imath \hbar e}{c}
+    \mathbf{A} \cdot \nabla \Psi
+\end{align}
+
+By choice of gauge, $\nabla \cdot \mathbf{A} = 0$, so:
+
+\begin{equation}
+    \left( - \imath \hbar \nabla - \frac{e}{c} \mathbf{A} \right)^2 \Psi = -
+    \hbar^2 \nabla^2 \Psi + \frac{e^2}{c^2} A^2 \Psi + \frac{2 \imath \hbar
+    e}{c} \mathbf{A} \cdot \nabla \Psi
+\end{equation}
+
+%----------------------------------------------------------------------------%
+%---------------------------- Right Hand Side -------------------------------%
+%----------------------------------------------------------------------------%
+
+\subsection{Right Hand Side (RHS)}
+\label{sec:schroedinger/rhs}
+
+So now we can start replacing $\Psi$ with $\sqrt{\rho} e^{\imath \theta}$ in
+parts:
+
+\begin{align}
+    \nabla \Psi &= \nabla \left( \sqrt{\rho} e^{\imath \theta} \right) \\
+                &= \nabla \left( \sqrt{\rho} \right) e^{\imath \theta} +
+    \sqrt{\rho} \nabla \left( e^{\imath \theta} \right) \\
+    &= \frac{\nabla \rho}{2 \sqrt{\rho}} e^{\imath \theta} + \imath \nabla \theta
+    \sqrt{\rho} e^{\imath \theta} \\
+    &= \Psi \left( \frac{\nabla \rho}{2 \rho} + \imath \nabla \theta
+    \right) \label{eqn:nabla-psi}
+\end{align}
+
+This means that:
+
+\begin{align}
+    \nabla^2 \Psi &= \nabla \left[ \Psi \left( \frac{\nabla \rho}{2 \rho} +
+    \imath \nabla \theta \right) \right] \\
+    &= \nabla \Psi \left( \frac{\nabla \rho}{2 \rho} + \imath \nabla \theta
+        \right) + \Psi \left( \nabla \left[ \frac{\nabla \rho}{2 \rho} \right] +
+        \imath \nabla^2 \theta \right) \\
+    &= \nabla \Psi \left( \frac{\nabla \rho}{2 \rho} + \imath \nabla \theta
+        \right) + \Psi \left( \frac{\nabla^2 \rho}{2 \rho} + \frac{\nabla
+        \rho}{2} \nabla \left( \frac{1}{\rho} \right) +
+        \imath \nabla^2 \theta \right) \\
+    &= \nabla \Psi \left( \frac{\nabla \rho}{2 \rho} + \imath \nabla \theta
+        \right) + \Psi \left( \frac{\nabla^2 \rho}{2 \rho} -
+            \frac{ \left[ \nabla \rho \right]^2}{2\rho^2} +
+        \imath \nabla^2 \theta \right) \label{eqn:nabla-squared-psi}
+\end{align}
+
+Using Equation \ref{eqn:nabla-psi}, we can expand this first term:
+
+\begin{align}
+    \nabla \Psi \left( \frac{ \nabla \rho}{2 \rho} + \imath \nabla \theta
+    \right)
+    &= \Psi \left( \frac{\nabla \rho}{2\rho} + \imath \nabla \theta \right)^2 \\
+    &= \Psi \left( \frac{\left[ \nabla \rho \right]^2}{4 \rho^2} - \left[ \nabla \theta
+        \right] ^2 + \imath \frac{\nabla \rho \cdot \nabla \theta}{\rho} \right)
+        \label{eqn:nabla-psi-bracket}
+\end{align}
+
+Thus, inputting Equation \ref{eqn:nabla-psi-bracket} into the equation for
+$\nabla^2 \Psi$ gives:
+
+\begin{align}
+    \nabla^2 \Psi
+    &= \Psi \left[ \frac{\nabla^2 \rho}{2 \rho} - \frac{ \left(
+        \nabla \rho \right)^2}{4 \rho^2} - \left( \nabla \theta \right)^2 + \imath
+        \nabla^2 \theta + \imath \frac{\nabla \rho \cdot \nabla \theta}{\rho} \right]
+\end{align}
+
+Now that we have both $\nabla \Psi$ and $\nabla^2 \Psi$, we know that the round
+bracket squared term in the Schr\"odinger equation is:
+
+\begin{align}
+    \left( -\imath \hbar \nabla - \frac{e}{c} \mathbf{A} \right)^2 \Psi
+    &= -\hbar^2 \Psi \left[ \frac{\nabla^2 \rho}{2 \rho} - \frac{ \left(
+        \nabla \rho \right)^2}{4 \rho^2} - \left( \nabla \theta \right)^2 + \imath
+        \nabla^2 \theta + \imath \frac{\nabla \rho \cdot \nabla \theta}{\rho} \right]
+        \notag \\
+      & \hspace{11.5pt} + \frac{e^2}{c^2} A^2 \Psi + \frac{2 \imath \hbar e}{c}
+        \mathbf{A} \cdot \left( \frac{\nabla \rho}{2 \rho} + \imath \nabla
+        \theta \right) \Psi \\
+    &=  \Psi \Bigg[ - \hbar^2 \frac{\nabla^2 \rho}{2\rho} + \hbar^2 \frac{\left(
+        \nabla \rho \right)^2}{4 \rho^2} + \hbar^2 \left( \nabla \theta
+        \right)^2 - \imath \hbar^2
+        \nabla^2 \theta
+        \notag \\
+      & \hspace{30pt} - \imath \hbar^2 \frac{\nabla \rho \cdot \nabla
+        \theta}{\rho} + \frac{e^2}{c^2} A^2 + \frac{\imath \hbar e}{c}
+        \mathbf{A} \cdot \frac{\nabla \rho}{\rho} \\
+      & \hspace{30pt} - \frac{2 \hbar e}{c} \mathbf{A} \cdot \nabla \theta
+        \Bigg]
+\end{align}
+
+Then the full RHS of the Schr\"odinger equation is given by the monolithic
+expression:
+
+\begin{align}
+    \mathrm{RHS}
+    &=  \Psi \Bigg[ - \frac{\hbar^2}{2m} \frac{\nabla^2 \rho}{2\rho} +
+        \frac{\hbar^2}{2m} \frac{\left( \nabla \rho \right)^2}{4 \rho^2} +
+        \frac{\hbar^2}{2m} \left( \nabla \theta \right)^2 - \imath
+        \frac{\hbar^2}{2m} \nabla^2 \theta
+        \notag \\
+        & \hspace{30pt} - \imath \frac{\hbar^2}{2m} \frac{\nabla \rho \cdot \nabla
+    \theta}{\rho} + \frac{e^2}{2mc^2} A^2 + \frac{\imath \hbar e}{2mc}
+        \mathbf{A} \cdot \frac{\nabla \rho}{\rho} \\
+      & \hspace{30pt} - \frac{\hbar e}{mc} \mathbf{A} \cdot \nabla \theta + e
+        \phi \Bigg] \notag
+\end{align}
+
+%----------------------------------------------------------------------------%
+%--------------------------- Left Hand Side ---------------------------------%
+%----------------------------------------------------------------------------%
+
+\subsection{Left Hand Side (LHS)}
+\label{sec:schroedinger/lhs}
+
+Now that we've sufficiently expanded out the RHS of the Schr\"odinger equation,
+let's look at the left hand side. By the same logic that $\nabla \Psi = \Psi
+\left( \frac{\nabla \rho}{2\rho} + \imath \nabla \theta \right)$:
+
+\begin{equation}
+    \dot \Psi = \Psi \left( \frac{\dot \rho}{2\rho} + \imath \dot \theta \right)
+    \label{eqn:psi-dot}
+\end{equation}
+
+Inputting this into the LHS of Schr\"odinger gives:
+
+\begin{equation}
+    \imath \hbar \dot \Psi = \imath \hbar \Psi \left( \frac{\dot \rho}{2\rho} +
+    \imath \dot \theta \right)
+\end{equation}
+
+We can eliminate the $\dot \rho$ using the continuity equation:
+
+\begin{equation}
+    \dot \rho + \nabla \cdot \mathbf{J} = 0
+    \label{eqn:continuity}
+\end{equation}
+
+This gives for the LHS:
+
+\begin{align}
+    \imath \hbar \dot \Psi &= \imath \hbar \Psi \left( - \frac{\nabla \cdot
+    \mathbf{J}}{2\rho} + \imath \dot \theta \right)
+\end{align}
+
+We can simply the divergence of $\mathbf{J}$ using Equation \ref{eqn:j}:
+
+\begin{align}
+    \nabla \cdot \mathbf{J}
+    &= \nabla \cdot \left[ \frac{\hbar}{m} \rho \left( \nabla \theta -
+        \frac{e}{\hbar c} \mathbf{A} \right) \right] \\
+    &= \frac{\hbar}{m} \left[ \nabla \rho \cdot \left( \nabla \theta -
+        \frac{e}{\hbar c} \mathbf{A} \right) + \rho \left( \nabla^2 \theta -
+        \frac{e}{\hbar c} \nabla \cdot \mathbf{A} \right) \right]
+\end{align}
+
+Again by the choice of the Coulomb gauge, $\nabla \cdot \mathbf{A} = 0$, so:
+
+\begin{align}
+    \nabla \cdot \mathbf{J}
+    &= \frac{\hbar}{m} \left[ \nabla \rho \cdot \nabla \theta - \frac{e}{\hbar c}
+        \mathbf{A} \cdot \nabla \rho + \rho \nabla^2 \theta \right] \\
+    &= \frac{\hbar}{m} \nabla \rho \cdot \nabla \theta - \frac{e}{mc}
+        \mathbf{A} \cdot \nabla \rho + \frac{\hbar}{m} \rho \nabla^2 \theta
+\end{align}
+
+So the LHS of the Schr\"odinger equation in full is:
+
+\begin{align}
+    \mathrm{LHS}
+    &= \imath \hbar \dot \Psi \\
+    &= \imath \hbar \Psi \left[ - \frac{\hbar}{m} \frac{\nabla \rho \cdot
+        \nabla \theta}{2\rho} + \frac{e}{mc} \mathbf{A} \cdot \frac{\nabla
+        \rho}{2\rho} - \frac{\hbar}{2m} \nabla^2 \theta + \imath \dot \theta
+        \right] \\
+    &= \Psi \left[ - \imath \frac{\hbar^2}{2m} \frac{\nabla \rho \cdot
+        \nabla \theta}{\rho} + \imath \frac{\hbar e}{2mc} \mathbf{A} \cdot
+        \frac{\nabla \rho}{\rho} - \imath \frac{\hbar^2}{2m} \nabla^2 \theta -
+        \hbar \dot \theta \right]
+\end{align}
+
+%----------------------------------------------------------------------------%
+%----------------------- Setting LHS and RHS equal --------------------------%
+%----------------------------------------------------------------------------%
+
+\newcommand{\lhs}[0]{\Psi \left[ - \imath \frac{\hbar^2}{2m} \frac{\nabla \rho
+        \cdot \nabla \theta}{\rho} + \imath \frac{\hbar e}{2mc} \mathbf{A} \cdot
+        \frac{\nabla \rho}{\rho} - \imath \frac{\hbar^2}{2m} \nabla^2 \theta -
+        \hbar \dot \theta \right]}
+
+\newcommand{\rhs}[0]{\Psi \Bigg[ - \frac{\hbar^2}{2m} \frac{\nabla^2
+        \rho}{2\rho} + \frac{\hbar^2}{2m} \frac{\left( \nabla \rho \right)^2}{4
+        \rho^2} + \frac{\hbar^2}{2m} \left( \nabla \theta \right)^2 - \imath
+        \frac{\hbar^2}{2m} \nabla^2 \theta \notag \\ & \hspace{30pt} - \imath
+        \frac{\hbar^2}{2m} \frac{\nabla \rho \cdot \nabla \theta}{\rho} +
+        \frac{e^2}{2mc^2} A^2 + \imath \frac{\hbar e}{2mc} \mathbf{A} \cdot
+        \frac{\nabla \rho}{\rho} \\ & \hspace{30pt} - \frac{\hbar e}{mc}
+        \mathbf{A} \cdot \nabla \theta + e \phi \Bigg] \notag}
+
+\subsection{Setting LHS and RHS equal to each other}
+
+As the title of this subsection suggests, what we do next is, not illogically,
+set both the LHS and the RHS of the rearranged and monolithic Schr\"odinger
+equation equal to each other. Here it is, but I'll warn you in advance that it's
+not pretty:
+
+\begin{align}
+    \mathrm{LHS} &= \lhs \\
+  = \mathrm{RHS} &= \rhs
+\end{align}
+
+Immediately we can cancel the $\Psi$ on both sides, as well as the $- \imath
+\frac{\hbar^2}{2m} \frac{\nabla \rho \cdot \nabla \theta}{\rho}$ terms, the
+$\imath \frac{\hbar e}{2mc} \mathbf{A} \cdot \frac{\nabla \rho}{\rho}$ terms and
+the $- \imath \frac{\hbar^2}{2m} \nabla^2 \theta$ terms. This cuts the equation
+down somewhat to:
+
+\begin{align}
+    - \hbar \dot \theta
+    &=  - \frac{\hbar^2}{4m} \frac{\nabla^2 \rho}{\rho}
+        + \frac{\hbar^2}{8m} \frac{ \left( \nabla \rho \right)^2}{\rho^2}
+        + \frac{\hbar^2}{2m} \left( \nabla \theta \right)^2
+        + \frac{e^2}{2mc^2}A^2 \notag \\
+    & \hspace{11.5pt} - \frac{\hbar e}{mc} \mathbf{A} \cdot \nabla \theta
+        + e \phi \\
+    \hbar \dot \theta + e \phi
+    &=  \frac{\hbar^2}{4m} \frac{\nabla^2 \rho}{\rho}
+        - \frac{\hbar^2}{8m} \frac{ \left( \nabla \rho \right)^2}{\rho^2}
+        - \frac{\hbar^2}{2m} \left( \nabla \theta \right)^2
+        - \frac{e^2}{2mc^2}A^2
+        + \frac{\hbar e}{mc} \mathbf{A} \cdot \nabla \theta
+\end{align}
+
+Taking the gradient of both sides of this equation gets us back to something
+that should look familiar from Section \ref{sec:electric}:
+
+\begin{align}
+    \hbar \nabla \dot \theta + e \nabla \phi
+    = \nabla \bigg[&
+      \frac{\hbar^2}{4m} \frac{\nabla^2 \rho}{\rho}
+    - \frac{\hbar^2}{8m} \frac{ \left( \nabla \rho \right)^2}{\rho^2}
+    - \frac{\hbar^2}{2m} \left( \nabla \theta \right)^2
+    \notag \\ &
+    - \frac{e^2}{2mc^2} A^2
+    + \frac{\hbar e}{mc} \mathbf{A} \cdot \nabla \theta \bigg]
+\end{align}
+
+We now substitute the left hand side of this into Equation \ref{eqn:mj-over-rho}
+to get:
+
+\begin{align}
+    \frac{\partial}{\partial t} \left( \frac{m \mathbf{J}}{\rho} \right)
+    &=  \hbar \nabla \dot \theta + e \nabla \phi + e \mathbf{E} \\
+    &=  \nabla \bigg[
+      \frac{\hbar^2}{4m} \frac{\nabla^2 \rho}{\rho}
+    - \frac{\hbar^2}{8m} \frac{ \left( \nabla \rho \right)^2}{\rho^2}
+    - \frac{\hbar^2}{2m} \left( \nabla \theta \right)^2
+    \notag \\ & \hspace{28pt}
+    - \frac{e^2}{2mc^2} A^2
+    + \frac{\hbar e}{mc} \mathbf{A} \cdot \nabla \theta \bigg]
+    + e \mathbf{E}
+    \label{eqn:end-of-sec-4}
+\end{align}
+
+This is very close to the final gauge invariant form that we want, but we've
+still got the gauge variant $\mathbf{A}$ in there.

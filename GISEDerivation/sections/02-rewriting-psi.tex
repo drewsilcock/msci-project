@@ -1,0 +1,83 @@
+%----------------------------------------------------------------------------%
+%----------------- Rewriting psi in terms of rho and theta ------------------%
+%----------------------------------------------------------------------------%
+
+\section{Rewriting $\Psi$ in terms of $\rho$ and $\theta$}
+\label{sec:rewriting}
+
+We can convert $\mathbf{J}$ into a more useful more using $\theta$ defined by:
+
+\begin{equation}
+    \Psi = \sqrt{\rho} e^{\imath \theta}
+\end{equation}
+
+Then $\mathbf{J}$ becomes:
+
+\begin{align}
+    \mathbf{J} &= \frac{1}{2m} \left[ \Psi^* \left( -\imath \hbar \nabla \right)
+    \Psi + \Psi \left( \imath \hbar \nabla \right) \Psi^* \right] - \frac{e}{mc}
+    \rho \mathbf{A} \\
+    &= \frac{1}{2m} \left[ \sqrt{\rho} e^{-\imath \theta} \left( -\imath \hbar
+    \nabla \right) \sqrt{\rho} e^{\imath \theta} + \sqrt{\rho} e^{\imath \theta}
+    \left( \imath \hbar \nabla \right) \sqrt{\rho} e^{-\imath \theta} \right] -
+    \frac{e}{mc} \rho \mathbf{A} \\
+    &= \frac{\imath \hbar}{2m} \left[ -\sqrt{\rho} e^{-\imath \theta} \nabla
+    \left( \sqrt{\rho}e^{\imath \theta} \right) + \sqrt{\rho} e^{\imath \theta}
+    \nabla \left( \sqrt{\rho} e^{-\imath \hbar} \right) \right] - \frac{e}{mc}
+    \rho \mathbf{A}
+\end{align}
+
+We can simply this by using the product rule:
+
+\begin{align}
+    \nabla \left( \sqrt{\rho} e^{\imath \theta} \right) &= \nabla \left(
+    \sqrt{\rho} \right) e^{\imath \theta} + \sqrt{\rho} \nabla \left( e^{\imath
+    \theta} \right) \\
+    &= \frac{\nabla \rho}{2 \sqrt{\rho}} e^{\imath \theta} + \imath \nabla \theta \sqrt{\rho}
+    e^{\imath \theta} \\
+    \mathrm{and} ~ \nabla \left( \sqrt{\rho} e^{-\imath \theta} \right) &= \nabla
+    \left( \sqrt{\rho} \right) e^{-\imath \theta} + \sqrt{\rho} \nabla \left(
+    e^{-\imath \theta} \right) \\
+    &= \frac{\nabla \rho}{2 \sqrt{\rho}} e^{-\imath \theta} - \imath \nabla \theta
+    \sqrt{\rho} e^{-\imath \theta}
+\end{align}
+
+Thus $\mathbf{J}$ becomes:
+
+\begin{align}
+    \mathbf{J} &= \frac{\imath \hbar}{2m} \left[ - \sqrt{\rho} e^{-\imath \theta}
+    \left( \frac{\nabla \rho}{2 \sqrt{\rho}} e^{\imath \theta} + \imath \nabla \theta
+    \sqrt{\rho} e^{\imath \theta} \right) \right] + \\
+    & ~~~~ \frac{\imath \hbar}{2m} \left[ \sqrt{\rho} e^{\imath \theta} \left(
+    \frac{\nabla \rho}{2 \sqrt{\rho}} e^{-\imath \theta} - \imath \nabla \theta \sqrt{\rho}
+    e^{-\imath \theta} \right) \right] - \frac{e}{mc} \rho \mathbf{A} \\
+    &= \frac{\imath \hbar}{2m} \left[ - \frac{\nabla \rho}{2} - \imath \rho
+    \nabla \theta  + \frac{\nabla \rho}{2} - \imath \rho \nabla \theta \right] -
+    \frac{e}{mc} \rho \mathbf{A} \\
+    &= \frac{\imath \hbar}{2m} \left( - 2\imath \rho \nabla \theta \right) -
+    \frac{e}{mc} \rho \mathbf{A} \\
+    &= \frac{\hbar}{m} \rho \left( \nabla \theta - \frac{e}{\hbar c}
+    \mathbf{A} \right)
+    \label{eqn:j}
+\end{align}
+
+Now that we've got $\mathbf{J}$ in this useful form, we can calculate the LHS of
+the equation we want to derive, Equation \ref{eqn:gise}:
+
+\begin{align}
+    \frac{\partial}{\partial t} \left( \frac{ m \mathbf{J}}{\rho} \right) &=
+    \frac{\partial}{\partial t} \left( \hbar \left[ \nabla \theta -
+    \frac{e}{\hbar c} \mathbf{A} \right] \right) \\
+    &= \hbar \frac{\partial}{\partial t} \left( \nabla \theta \right) -
+    \frac{e}{c} \frac{\partial}{\partial t} \left( \mathbf{A} \right)
+\end{align}
+
+As $\frac{\partial ( \nabla f )}{\partial t} = \nabla \left( \frac{\partial f}{\partial
+t} \right)$ for well-behaved $f$, we can write this as:
+
+\begin{equation}
+    \frac{\partial}{\partial t} \left( \frac{m \mathbf{J}}{\rho} \right) = \hbar
+    \nabla \dot \theta - \frac{e}{c} \mathbf{\dot A}
+\end{equation}
+
+Where $\dot f \defeq \frac{\partial f}{\partial t}$.
