@@ -1,0 +1,241 @@
+\documentclass{article}
+
+\input{preamble}
+
+\title{Derivation of Quantum Probability Continuity Equation for EM Schr\"odinger}
+\author{Drew Silcock}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+Here's the equation we want to derive, called the probability continuity
+equation for Quantum Mechanics:
+
+\begin{equation}
+    \frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{J} = 0
+\end{equation}
+
+Given the definitions of $\rho$ and $\mathbf{J}$ as follows:
+
+\begin{align}
+    \rho &\defeq | \Psi |^2 \\
+    \mathbf{J} &\defeq \frac{1}{2m} \Psi^*(-\imath\hbar\nabla -
+    \frac{e}{c}\mathbf{A})\Psi +
+    \frac{1}{2m}\Psi(\imath\hbar\nabla-\frac{e}{c}\mathbf{A})\Psi^*
+\end{align}
+
+Where $\Psi$ is our quantum wavefunction and $\mathbf{A}$ is our vector
+potential.
+
+First, let's note that
+
+\begin{align}
+    \frac{\partial \rho}{\partial t} &= \frac{\partial}{\partial t} \left(
+    \Psi^*\Psi \right) \\
+    &= \Psi\frac{\partial \Psi^*}{\partial t} + \Psi^*\frac{\partial
+    \Psi}{\partial t}
+\end{align}
+
+Before taking the div of $\mathbf{J}$, we first note that
+
+\begin{align}
+    \mathbf{J} &= \frac{1}{2m}\left[ \Psi^*\left(-\imath\hbar\nabla\right)\Psi +
+    \Psi\left(\imath\hbar\nabla\right)\Psi^*\right] - \frac{e}{mc}\mathbf{A}|\Psi|^2
+    \\
+    &= \frac{1}{2m}\left[ \left\{ \Psi^*\left(-\imath\hbar\nabla\right)\Psi
+    \right\} + \left\{ \Psi^*\left(-\imath\hbar\nabla\right)\Psi \right\}^* \right]
+    - \frac{e}{mc}\rho\mathbf{A}
+\end{align}
+
+Next we use the fact that $\Re(z) = \frac{z + z^*}{2}$, we see that
+
+\begin{align}
+    \mathbf{J} &= -\frac{\hbar}{m}\Re(\Psi^*\imath\nabla\Psi) -
+    \frac{e}{mc}\rho\mathbf{A}
+\end{align}
+
+Using the equation
+
+\begin{align}
+    \Re(\imath z) &= \frac{(\imath z) + (\imath z)^*}{2} \\
+    &= \imath\frac{z-z^*}{2} \\
+    &= -\frac{z-z^*}{2\imath} \\
+    &= -\Im(z)
+\end{align}
+
+We can simplify the above to
+
+\begin{equation}
+    \mathbf{J} = \frac{\hbar}{m}\Im(\Psi^*\nabla\Psi) -
+    \frac{e}{mc}\rho\mathbf{A}
+\end{equation}
+
+Now we're ready to take its divergence, and try and show that it's equal to
+$\frac{\partial \rho}{\partial t}$:
+
+\begin{align}
+    \nabla \cdot \mathbf{J} &= \frac{\hbar}{m} \nabla \cdot \Im(\Psi^* \nabla
+    \Psi) - \nabla\left(\frac{e}{mc}\rho\mathbf{A}\right) \\
+    &= \frac{\hbar}{m}\Im(\nabla \cdot [\Psi^*\nabla\Psi]) - \frac{e}{mc}\left(
+    \nabla \rho \cdot \mathbf{A} + \rho \nabla \cdot \mathbf{A} \right) \\
+    &= \frac{\hbar}{m}\Im\left(\nabla \Psi^* \cdot \nabla \Psi + \Psi^*
+    \nabla^2\Psi\right) - \frac{e}{mc}\left(\nabla \rho \cdot \mathbf{A} + \rho
+    \nabla \cdot \mathbf{A}\right)
+\end{align}
+
+We can simply this by realising that
+
+\begin{align}
+    \nabla \Psi^* \cdot \nabla \Psi &= \left( \nabla \Psi \right)^* \cdot \nabla
+    \Psi \\
+    &= |\nabla \Psi|^2 \in \mathbb{R} \\
+    \Rightarrow \Im\left(\nabla\Psi^* \cdot \nabla \Psi\right) &= 0
+\end{align}
+
+Thus we have
+
+\begin{equation}
+    \nabla \cdot \mathbf{J} = \frac{\hbar}{m} \Im \left( \Psi^* \nabla^2
+    \Psi\right) - \frac{e}{mc}\left( \nabla \rho \cdot \mathbf{A} + \rho \nabla
+    \cdot \mathbf{A} \right)
+\end{equation}
+
+Choosing the Coulumb gauge, $\nabla \cdot \mathbf{A} = 0$, allows us to simply
+this further to
+
+\begin{equation}
+    \nabla \cdot \mathbf{J} = \frac{\hbar}{m}\Im\left(\Psi^*\nabla^2\Psi\right) -
+    \frac{e}{mc}\left(\nabla\rho \cdot \mathbf{A}\right)
+\end{equation}
+
+Now Schr\"odinger's equation gives us an expression for $\nabla^2\Psi$ which we
+might be able to substitute back in
+
+\begin{equation}
+    \label{schrodinger}
+    \imath\hbar\frac{\partial\Psi}{\partial t} =
+    \left[\frac{1}{2m}\left(-\imath\hbar\nabla - \frac{e}{c}\mathbf{A}\right)^2
+    + eV\right]\Psi
+\end{equation}
+
+But first, let's expand it and rearrange it into a more useful form:
+
+\begin{align}
+    \imath\hbar\frac{\partial\Psi}{\partial t} &= \frac{1}{2m}\left(-\hbar^2\nabla^2 +
+    \frac{e^2}{c^2}A^2 + \frac{\imath\hbar e}{c}\nabla \cdot \mathbf{A} +
+    \frac{\imath\hbar e}{c}\mathbf{A} \cdot \nabla \right)\Psi + eV\Psi \\
+    &= \frac{1}{2m}\left(-\hbar^2\nabla^2\Psi + \frac{e^2}{c^2}A^2 +
+    \frac{\imath\hbar e}{c}\nabla \cdot [\mathbf{A}\Psi] + \frac{\imath\hbar
+    e}{c}\mathbf{A} \cdot [\nabla \Psi] \right) + eV\Psi
+\end{align}
+
+By the product rule:
+
+\begin{equation}
+    \nabla \cdot (\mathbf{A}\Psi) = \Psi \nabla \cdot \mathbf{A} + \mathbf{A}
+    \cdot \nabla \Psi
+\end{equation}
+
+Thus, we can write this as:
+
+\begin{equation}
+    \imath\hbar\frac{\partial \Psi}{\partial t} = \frac{1}{2m}\left(-\hbar^2\nabla^2\Psi + \frac{e^2}{c^2}A^2 +
+    \frac{\imath\hbar e}{c}\Psi \nabla \cdot \mathbf{A} + \frac{2\imath\hbar
+    e}{c}\mathbf{A} \cdot \nabla \Psi \right) + eV\Psi
+\end{equation}
+
+Remembering that $\nabla \cdot \mathbf{A} = 0$, due to our choice of gauge:
+
+\begin{align}
+    \imath\hbar\frac{\partial\Psi}{\partial t} &=
+    \frac{1}{2m}\left(-\hbar^2\nabla^2 + \frac{e^2}{c^2}A^2 + \frac{2\imath\hbar
+    e}{c}\mathbf{A} \cdot \nabla \right) \Psi + eV\Psi \\
+    -\frac{\hbar^2}{2m}\nabla^2\Psi &= \imath\hbar\frac{\partial\Psi}{\partial
+    t} - \frac{e^2}{c^2}A^2\Psi - \frac{\imath\hbar e}{mc}\mathbf{A} \cdot \nabla
+    \Psi + eV\Psi \\
+    \nabla^2\Psi &= -\frac{2m\imath}{\hbar}\frac{\partial\Psi}{\partial t} +
+    \frac{2me^2}{\hbar^2c^2}A^2\Psi + \frac{2\imath e}{\hbar c}\mathbf{A} \cdot
+    \nabla\Psi + eV\Psi
+\end{align}
+
+As $V$ is a real scalar, $\Psi^* eV\Psi = eV |\Psi^2| \in \mathbb{R}$, thus
+this term goes to zero when we take the imaginary part. Our expression thus
+becomes:
+
+\begin{align}
+    \nabla \cdot \mathbf{J} &= \frac{\hbar}{m}
+    \Im\left(\Psi^*\left[-\frac{2m\imath}{\hbar}\frac{\partial\Psi}{\partial t}
+    + \frac{2me^2}{\hbar^2 c^2}A^2 \Psi + \frac{2\imath e}{\hbar c}\mathbf{A}
+    \cdot \nabla \Psi \right]\right) \notag \\
+    & \hspace{12pt} - \frac{e}{mc}\left(\nabla \rho \cdot
+    \mathbf{A}\right) \\
+\end{align}
+
+Assuming $\mathbf{A} \in \mathbb{R}$, the term
+$\Im\left(\Psi^*\frac{2me^2}{\hbar^2c^2}A^2\Psi\right) = 0$, meaning we have the
+following:
+
+\begin{equation}
+    \nabla \cdot \mathbf{J} =
+    \frac{\hbar}{m}\Im\left(-\frac{2m\imath}{\hbar}\Psi^*\frac{\partial\Psi}{\partial
+    t} + \frac{2\imath e}{\hbar c}\Psi^* \mathbf{A} \cdot \nabla \Psi\right) -
+    \frac{e}{mc}\left(\nabla\rho \cdot \mathbf{A}\right)
+    \label{eqn:penultimate}
+\end{equation}
+
+Let's look at that second term in the $\Im$:
+
+\begin{align}
+    \frac{\hbar}{m}\Im\left(\frac{2\imath e}{\hbar c} \Psi^* \mathbf{A} \cdot
+    \nabla \Psi\right) =&
+    \frac{2e}{mc}\Im\left(\imath\mathbf{A}\cdot[\Psi^*\nabla\Psi]\right) \\
+    & \frac{2e}{mc}\Re\left(\mathbf{A}\cdot[\Psi^*\nabla\Psi]\right) \\
+    & \frac{e}{mc}\left(\left\{\mathbf{A} \cdot [\Psi^*\nabla\Psi]\right\} +
+    \left\{\mathbf{A} \cdot [\Psi^*\nabla\Psi]\right\}^*\right) \\
+    & \frac{e}{mc}\left( \mathbf{A} \cdot [ \Psi^*\nabla\Psi + \Psi\nabla\Psi^*
+    ] \right)
+\end{align}
+
+Remembering that $\nabla\rho = \nabla(\Psi^*\Psi) = \Psi^*\nabla\Psi + \Psi\nabla\Psi^*$,
+this can be simplified to:
+
+\begin{align}
+    \frac{e}{mc}(\mathbf{A}\cdot[\Psi^*\nabla\Psi + \Psi\nabla\Psi^*]) &=
+    \frac{e}{mc}(\mathbf{A}\cdot\nabla\rho) \\
+    &= \frac{e}{mc}(\nabla\rho\cdot\mathbf{A})
+\end{align}
+
+Inputting this back into Equation \ref{eqn:penultimate} gives:
+
+\begin{align}
+    \nabla \cdot \mathbf{J} &= \frac{\hbar}{m} \Im
+    \left(-\frac{2m\imath}{\hbar}\Psi^* \frac{\partial \Psi}{\partial t}\right)
+     + \frac{e}{mc}(\nabla \rho \cdot \mathbf{A}) - \frac{e}{mc}(\nabla \rho
+    \cdot \mathbf{A}) \\
+    &= \frac{\hbar}{m} \Im \left(-\frac{2m\imath}{\hbar}\Psi^* \frac{\partial
+    \Psi}{\partial t}\right) \\
+    &= - \Re \left( 2 \Psi^* \frac{\partial \Psi}{\partial t} \right) \\
+    &= - \left( \left\{ \Psi^* \frac{\partial \Psi}{\partial t} \right\} +
+    \left\{ \Psi^* \frac{\partial \Psi}{\partial t} \right\}^* \right) \\
+    &= - \left( \Psi^* \frac{ \partial \Psi }{ \partial t } + \Psi \frac{
+    \Psi^*}{\partial t} \right)
+\end{align}
+
+We showed at the beginning in Equation \label{eqn:density-change} that this is
+simply:
+
+\begin{align}
+    \nabla \cdot \mathbf{J} &= - \frac{\partial \rho}{\partial t} \\
+    \Rightarrow \frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{J}
+    &= 0
+\end{align}
+
+We have thus proven the continuity equation demonstrating conservation of
+probability in quantum mechanics, from the definitions of $\rho$ and
+$\mathbf{J}$.
+
+$\square$
+
+\end{document}
