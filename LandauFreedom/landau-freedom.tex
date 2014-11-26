@@ -1,0 +1,50 @@
+\documentclass{article}
+
+\input{preamble}
+
+\title{Locking the Wavefunction Freedom to Continuity for Landau Problem}
+\author{Drew Silcock}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+\section{Analyticity of $f(x,y)$}
+
+\textbf{Todo:} Find out why $f(x,y)$ has to be analytic
+
+As $f(x,y)$ is analytic, this implies that it is harmonic and thus obeys the
+Laplace equation:
+\begin{equation}
+    \nabla^2 f(x,y) = \partial_x^2 f(x,y) + \partial_y^2 f(x,y) = 0
+\end{equation}
+As $f(x,y)$ is independent of $z$ so $\partial_z f(x,y)$ is identically null.
+This implies that the real and imaginary parts of $f(x,y)$, $f_R = \Re{\left\{ f
+\right\}}$ and $f_I = \Im{\left\{ f \right\}}$, also obeys the Laplace equation:
+\begin{align}
+    \nabla^2 f_R &= 0 \\
+    \textrm{and} ~ \nabla^2 f_I &= 0
+\end{align}
+In addition to this, $f(x,y) ~ \textrm{is analytic} \Leftrightarrow f(x,y)$
+obeys Cauchy-Riemann (CR) equations:
+\begin{align}
+    \partial_x f_R &= \partial_y f_I \\
+    \textrm{and} ~ \partial_y f_R &= - \partial_x f_I
+\end{align}
+These will come in useful shortly when examining $\div{J}$.
+
+\section{Analyticity of $\logg{f(x,y)}$}
+
+If we ignore the vertex points at $f(x,y) = 0$, then we can say that
+$\logg{f(x,y)}$ is also harmonic and obeys the Laplace equation. Thus, writing
+$f(x,y)$ as $f(x,y) = Fe^{i\phi}$ where $F, \phi \in \mathbb{R}:
+
+\begin{align}
+    \nabla^2 \logg{f(x,y)} &= \nabla^2 
+
+\section{Locking the analyticity of $f(x,y)$ to the continuity of $\mathbf{J}$}
+
+\end{document}
