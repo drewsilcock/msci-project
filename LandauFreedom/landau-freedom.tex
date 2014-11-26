@@ -16,20 +16,15 @@
 
 \textbf{Todo:} Find out why $f(x,y)$ has to be analytic
 
-As $f(x,y)$ is analytic, this implies that it is harmonic and thus obeys the
-Laplace equation:
-\begin{equation}
-    \nabla^2 f(x,y) = \partial_x^2 f(x,y) + \partial_y^2 f(x,y) = 0
-\end{equation}
-As $f(x,y)$ is independent of $z$ so $\partial_z f(x,y)$ is identically null.
-This implies that the real and imaginary parts of $f(x,y)$, $f_R = \Re{\left\{ f
-\right\}}$ and $f_I = \Im{\left\{ f \right\}}$, also obeys the Laplace equation:
+As $f(x,y)$ is analytic, this implies that its real and imaginary parts are
+harmonic and thus obey the Laplace equation:
 \begin{align}
-    \nabla^2 f_R &= 0 \\
-    \textrm{and} ~ \nabla^2 f_I &= 0
+                   \nabla^2 f_R &= \nabla^2 \Ree{f(x,y)} = 0 \\
+    \textrm{and} ~ \nabla^2 f_I &= \nabla^2 \Imm{f(x,y)} = 0 \\
+    \Rightarrow    \nabla^2 f   &= \nabla^2 f_R + \nabla^2 f_I = 0
 \end{align}
 In addition to this, $f(x,y) ~ \textrm{is analytic} \Leftrightarrow f(x,y)$
-obeys Cauchy-Riemann (CR) equations:
+obeys the Cauchy-Riemann (CR) equations:
 \begin{align}
     \partial_x f_R &= \partial_y f_I \\
     \textrm{and} ~ \partial_y f_R &= - \partial_x f_I
@@ -38,12 +33,104 @@ These will come in useful shortly when examining $\div{J}$.
 
 \section{Analyticity of $\logg{f(x,y)}$}
 
-If we ignore the vertex points at $f(x,y) = 0$, then we can say that
-$\logg{f(x,y)}$ is also harmonic and obeys the Laplace equation. Thus, writing
-$f(x,y)$ as $f(x,y) = Fe^{i\phi}$ where $F, \phi \in \mathbb{R}:
+For any function $g(z)$, if $g(z)$ is analytic on $\mathbb{C}$, then
+$\logg{g(z)}$ is analytic on $\mathbb{C} \setminus \left\{ g(z) \in
+\mathbb{R} : g(z) \leq 0 \right\}$ % TODO: Find reference for this
 
+Thus, if we ignore the negative real line of $f(x,y)$, $f(x,y) \in \mathbb{R} :
+f(x,y) \leq 0$, and take the principal branch of $\log$, then we can say that
+the real and imaginary parts of $\logg{f(x,y)}$ are also harmonic. Writing
+$f(x,y)$ as $f(x,y) = F e^{i \phi}$ where $F, \phi \in \mathbb{R}$:
 \begin{align}
-    \nabla^2 \logg{f(x,y)} &= \nabla^2 
+    \logg{f(x,y)} &= \logg{F} + i \phi \\
+    \Rightarrow \Ree{\logg{f(x,y)}} &= \logg{F} \\
+    \textrm{and} ~ \Imm{\logg{f(x,y)}} &= \phi
+\end{align}
+Then we can write the condition of harmonicity of real and imaginary parts of
+$\logg{f(x,y)}$ as:
+\begin{align}
+    \nabla^2 \Ree{\logg{f(x,y)}} &= \nabla^2 \logg{F} = 0 \\
+    \textrm{and} ~ \nabla^2 \Imm{\logg{f(x,y)}} &= \nabla^2 \phi = 0
+\end{align}
+In addition, $\logg{f(x,y)}$ also obeys CR:
+\begin{align}
+    \partial_x \left( \logg{F} \right) &= \partial_y \phi \\
+    \textrm{and}~ \partial_y \left( \logg{F} \right) &= - \partial_x \phi
+\end{align}
+These will be useful later when examining $\div{J}$ and imply an important
+result for $\left(\nabla F\right) \cdot \left(\nabla \phi\right)$.
+
+\section{Implication that $\left(\nabla F\right) \cdot \left( \nabla \phi \right) = 0$}
+
+As $\nabla^2 f(x,y) = 0$, we can use the product rule to find an important
+result for $\left(\nabla F\right) \cdot \left(\nabla \phi\right)$:
+\begin{align}
+    \nabla^2 f &= \nabla^2 \left( F e^{i \phi} \right) \\
+               &= \nabla \cdot \nabla \left( F e^{i \phi} \right) \\
+               &= \nabla \cdot \left[ e^{i \phi} \nabla F + F \nabla \left( e^{i \phi} \right)
+                  \right] \\
+               &= \nabla \left( e^{i \phi} \right) \cdot (\nabla F) + e^{i \phi}
+                  \nabla^2 F + \left( \nabla F \right) \cdot \nabla \left( e^{i \phi} \right)
+                  + F \nabla^2 \left( e^{i \phi} \right) \\
+               &= 2 \left( \nabla F \right) \cdot \nabla \left( e^{i \phi}
+                  \right) + e^{i \phi} \nabla^2 F + F \nabla^2 \left( e^{i \phi}
+                  \right)
+\end{align}
+As $\nabla \left( e^{i \phi} \right) = i e^{i \phi} \nabla \phi$, we can write:
+\begin{align}
+    \nabla^2 \left( e^{i \phi} \right) &= \nabla \cdot \left(i e^{i \phi} \nabla
+        \phi \right) \\
+    &= i \nabla \left( e^{i \phi} \right) \cdot (\nabla \phi) + i e^{i \phi}
+        \nabla^2 \phi \\
+    &= i \nabla \left( e^{i \phi} \right) \cdot (\nabla \phi) ~\textrm{as}~
+        \nabla^2 \phi = 0 \\
+    &= - e^{i \phi} \left( \nabla \phi \right)^2
+\end{align}
+Then $\nabla^2 f$ can be simplified to:
+\begin{align}
+    \nabla^2 f &= 2i e^{i \phi} \left( \nabla F \right) \cdot \left( \nabla \phi
+        \right) + e^{i \phi} \nabla^2 F - F e^{i \phi} \left( \nabla \phi \right)^2 \\
+    &= e^{i \phi} \left[ 2i (\nabla F) \cdot (\nabla \phi) + \nabla^2 F - F
+        \left( \nabla \phi \right)^2 \right]
+\end{align}
+This can be simplified using the fact that $\nabla \left( \logg{F} \right) =
+\frac{\nabla F}{F}$ and thus $\nabla F = F \nabla \left( \logg{F} \right)$:
+\begin{align}
+    \nabla^2 F &= \nabla \cdot \nabla F \\
+               &= \nabla \cdot \left[ F \nabla \left( \logg{F} \right) \right]
+    \\
+    &= \left( \nabla F \right) \cdot \nabla \left( \logg{F} \right) + F \nabla^2
+    \left( \logg{F} \right) \\
+    &= \left( \nabla F \right) \cdot \nabla \left( \logg{F} \right)
+    ~\textrm{as}~ \nabla^2 \left( \logg{F} \right) = 0 \\
+    &= \left( F \nabla \left[ \logg{F} \right] \right) \cdot \nabla \left(
+    \logg{F} \right) \\
+    &= F \left[ \nabla \left( \logg{F} \right) \right]^2
+\end{align}
+Thus:
+\begin{align}
+    \nabla^2 F - F \left( \nabla \phi \right)^2 &= F \left[ \nabla \left( \logg{F}
+        \right) \right]^2 - F \left( \nabla \phi \right)^2 \\
+    &= F \left\{ \left[ \partial_x \left( \logg{F} \right) \right]^2
+       + \left[ \partial_y \left( \logg{F} \right) \right]^2
+       - \left( \partial_x \phi \right)^2
+       - \left( \partial_y \phi \right)^2 \right\} \\
+    &= F \left\{ \left( \partial_y \phi \right)^2
+       + \left( - \partial_x \phi \right)^2
+       - \left( \partial_x \phi \right)^2
+       - \left( \partial_y \phi \right)^2 \right\} ~\textrm{using CR}\\
+    &= 0
+\end{align}
+Then, $\nabla^2 f(x,y)$ is simply:
+\begin{equation}
+    \nabla^2 f(x,y) = 2 i e^{i \phi} \left( \nabla F \right) \cdot \left( \nabla
+        \phi \right)
+\end{equation}
+As $\nabla^2 f(x,y) = 0$ and $\forall \phi \left( e^{i \phi} \neq 0 \right)$,
+this gives the important result:
+\begin{equation}
+    \left( \nabla F \right) \cdot \left( \nabla \phi \right) = 0
+\end{equation}
 
 \section{Locking the analyticity of $f(x,y)$ to the continuity of $\mathbf{J}$}
 
