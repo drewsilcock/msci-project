@@ -1,0 +1,114 @@
+\documentclass{article}
+
+\input{preamble}
+
+\title{The Probability Current for the Landau Problem}
+\author{Drew Silcock}
+\longdate{}
+
+\begin{document}
+
+\maketitle
+
+\section{The Straight/Landau Gauge}
+
+The Landau problem is trying to find the wavefunction for a uniform everywhere
+magnetic field:
+\begin{equation}
+    \mathbf{B} = B \basis{z}
+\end{equation}
+
+We will only consider the ground state solutions here. In order to find a
+solution for the wavefunction $\Psi$, we must first choose a gauge. For the
+straight gauge, $\mathbf{A} = B x \basis{y}$, the ground state solution is:
+\begin{align}
+    \Psi_{s,0}(x,t) = \mathcal{N} e^{- \frac{1}{2} \frac{M \Omega}{\hbar} x^2} e^{-i
+    \frac{1}{2} \hbar \Omega t}
+\end{align}
+Where $\mathcal{N}$ is a normalisation factor, $M$ is the mass of the particle,
+$\Omega \defeq \frac{q B}{M} \in \mathbb{R}$ is the angular frequency.
+% TODO: Clearer explanation of \Omega
+
+Writing $\Psi$ as $\Psi = \sqrt{\rho} e^{i \theta}$ where $\rho$ is the
+probability density and $\theta$ is the phase of the wavefunction, we find:
+\begin{align}
+    \rho &= \mathcal{N}^2 e^{- \frac{M \Omega}{\hbar} x^2} \\
+    \textrm{and}~ \theta &= - \frac{1}{2} \hbar \Omega t
+\end{align}
+
+Thus, the probability current for the straight gauge is:
+\begin{align}
+    \mathbf{J}_s &= \frac{\hbar \rho}{M} \left( \nabla \theta - \frac{q}{\hbar}
+        \mathbf{A} \right) \\
+    &= \frac{\hbar}{M} \mathcal{N}^2 e^{- \frac{M \Omega}{\hbar} x^2}
+       \left( \nabla \left\{
+       - \frac{1}{2} \hbar \Omega t \right\}
+       - \frac{q}{\hbar} B x \basis{y} \right) \\
+    &= - \frac{q B}{M} \mathcal{N}^2 e^{- \frac{M \Omega}{\hbar} x^2} x \basis{y}
+       ~\textrm{as}~ \nabla \left\{ - \frac{1}{2} \hbar \Omega t \right\} = 0 \\
+    &= - \mathcal{N}^2 \Omega e^{- \frac{M \Omega}{\hbar} x^2} x \basis{y}
+\end{align}
+
+\section{The Circular Gauge}
+
+If we take the circular gauge, $\mathbf{A} = \frac{1}{2} B \left( x \basis{y} -
+y \basis{x} \right)$, then we find the ground state wavefunction is:
+\begin{align}
+    \Psi_{c,0}(x,y,t) = \mathcal{N} f(x,y)
+        e^{- \frac{1}{4}\frac{M\Omega}{\hbar} \left( x^2 + y^2 \right)}
+        e^{- i \frac{1}{2} \hbar \Omega t}
+\end{align}
+where $f(x,y)$ is an complex analytic function of $x$ and $y$ and $\mathcal{N}$
+is a different, generic normalisation.
+
+If we write this analytic function $f(x,y)$ as $f(x,y) = F e^{i \phi}$, then the
+associated probability current is:
+\begin{align}
+    \mathbf{J}_c(F, \phi) &= \frac{\hbar \rho}{M} \left( \nabla \theta - \frac{q}{\hbar}
+        \mathbf{A} \right) \\
+    &= \frac{\hbar F^2}{M} \mathcal{N}^2 e^{- \frac{1}{2} \frac{M \Omega}{\hbar} \left( x^2 + y^2
+       \right)} \left( \nabla \phi - \frac{q}{\hbar} \frac{1}{2} B \left( x\basis{y} -
+       y\basis{x} \right) \right) \\
+       &= \frac{\hbar F^2}{M} \mathcal{N}^2 e^{- \frac{1}{2} \frac{M \Omega}{\hbar} \left( x^2 + y^2
+       \right)} \left( \nabla \phi - \frac{M \Omega}{2 \hbar} \left( x\basis{y} -
+       y\basis{x} \right) \right)
+\end{align}
+
+\section{Equivalence of straight and circular}
+
+We can choose this analytic function $f(x,y)$ such that the probability current
+for the circular gauge reduces to the probability current for the straight
+gauge. If we choose:
+\begin{align}
+    f_s(x,y) &= e^{- \frac{1}{4} \frac{M \Omega}{\hbar} \left( x + i y \right)^2}
+    \\
+    &= e^{- \frac{1}{4} \frac{M \Omega}{\hbar} \left( x^2 - y^2 \right)}
+        e^{- i \frac{1}{2} \frac{M \Omega}{\hbar} xy} \\
+        \Rightarrow F_s &= e^{- \frac{1}{4} \frac{M \Omega}{\hbar} \left( x^2 - y^2
+    \right)} \\
+    \textrm{and}~ \phi_s &= -\frac{1}{2} \frac{M \Omega}{\hbar} xy
+\end{align}
+
+Then $\mathbf{J}_c$ becomes:
+\begin{align}
+    \mathbf{J}_c(F_s, \phi_s)
+    &= \frac{\hbar F_s^2}{M} \mathcal{N}^2 e^{- \frac{1}{2} \frac{M \Omega}{\hbar} \left( x^2 + y^2
+       \right)} \left( \nabla \phi_s - \frac{M \Omega}{2 \hbar} \left( x\basis{y} -
+       y\basis{x} \right) \right) \\
+    &= \frac{\hbar e^{- \frac{1}{2} \frac{M \Omega}{\hbar} \left( x^2 - y^2
+       \right)}}{M} \mathcal{N}^2 e^{- \frac{1}{2} \frac{M \Omega}{\hbar} \left( x^2
+       + y^2 \right)} \left( \nabla \left\{ - \frac{1}{2} \frac{M \Omega}{\hbar} xy
+       \right\} - \frac{M \Omega}{2 \hbar} \left( x\basis{y} - y \basis{x}
+       \right) \right) \\
+    &= -\frac{\Omega}{2} \mathcal{N}^2 e^{- \frac{1}{2} \frac{M
+       \Omega}{\hbar} x^2} \left( \nabla \left\{ xy \right\} + x\basis{y} -
+       y\basis{x} \right) \\
+    &= -\frac{\Omega}{2} \mathcal{N}^2 e^{- \frac{1}{2} \frac{M
+       \Omega}{\hbar} x^2} \left( x\basis{y} + y\basis{x} + x\basis{y} -
+       y\basis{x} \right) \\
+    &= -\mathcal{N}^2 \Omega e^{- \frac{1}{2} \frac{M \Omega}{\hbar} x^2}
+       x\basis{y} \\
+       &= \mathbf{J}_s
+\end{align}
+
+\end{document}

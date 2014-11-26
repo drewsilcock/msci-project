@@ -1,0 +1,23 @@
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{datetime}
+
+% New definition of square root:
+% it renames \sqrt as \oldsqrt
+\let\oldsqrt\sqrt
+% it defines the new \sqrt in terms of the old one
+\def\sqrt{\mathpalette\DHLhksqrt}
+\def\DHLhksqrt#1#2{%
+\setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.4pt\box2}}
+
+\newcommand\defeq{\stackrel{\mathclap{\normalfont\mbox{\tiny def}}}{=}}
+\newcommand{\logg}[1]{\log \left\{ #1 \right\}}
+\newcommand{\Ree}[1]{\Re \left\{ #1 \right\}}
+\newcommand{\Imm}[1]{\Im \left\{ #1 \right\}}
+\newcommand{\basis}[1]{\mathbf{ \hat{ #1 }}}
+
+\renewcommand{\div}[1]{\nabla \cdot #1}
