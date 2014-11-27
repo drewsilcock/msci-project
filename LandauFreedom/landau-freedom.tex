@@ -189,11 +189,110 @@ $\mathbb{C} \setminus \left\{ f(x,y) \in \mathbb{R} : f(x,y) \leq 0 \right\}$, a
 \end{align}
 So the divergence of $\mathbf{J}_c$ can be simplified to:
 \begin{align}
-    \div{J}_c = \mathcal{M} \left\{
+    \div{J}_c &= \mathcal{M} \left\{
         \left[ \nabla \left( F^2 e^{- \mu \left( x^2 + y^2 \right)} \right)
             \right] \cdot
-            \left[ \nabla \phi - \mu \left( x \basis{y} - y \basis{x} \right)
-        \right] \right\}
+        \left[ \nabla \phi - \mu \left( x \basis{y} - y \basis{x} \right)
+            \right] \right\} \\
+    &= \mathcal{M} \left[ e^{- \mu (x^2+ y^2) } \nabla F^2
+        + F^2 \nabla \left(e^{- \mu \left( x^2 + y^2 \right)} \right)
+        \right] \cdot
+        \left[ \nabla \phi- \mu \left(x\basis{y} - y\basis{x} \right) \right] \\
+    &= \mathcal{M} e^{- \mu \left(x^2 + y^2\right)} \left[ \nabla^2 F
+        - \mu F^2 \left( 2x\basis{x} + 2y\basis{y} \right) \right] \cdot
+        \left[ \nabla \phi- \mu \left(x\basis{y} - y\basis{x} \right) \right] \\
 \end{align}
+This can be simplified by realising that $\nabla F = F \nabla \left( \logg{F}
+\right)$, and thus $\nabla F^2 = F^2 \nabla \left( \logg{F^2} \right) =
+2 F^2 \nabla \left( \logg{F} \right)$.
+\begin{align}
+    \div{J}_c &= 2F^2\mathcal{M} e^{- \mu \left( x^2 + y^2 \right)}
+        \left[ \nabla \left( \logg{F} \right) -\mu \left( \mathbf{x} + \mathbf{y}
+        \right) \right]
+        \cdot \left[ \nabla \phi - \mu \left( x\basis{y} - y\basis{x} \right)
+        \right] \\
+        &= 2F^2 \mathcal{M} e^{- \mu \left( x^2 + y^2 \right)}
+        \Big[ \nabla \left( \logg{F} \right) \cdot \nabla \phi
+            - \nabla \left( \logg{F} \right) \cdot \mu
+                \left( x\basis{y} - y\basis{x} \right) \notag \\
+                & \hspace{100pt} - \mu \left( \mathbf{x} + \mathbf{y} \right) \cdot \nabla \phi
+        + \mu^2 \left( \mathbf{x} + \mathbf{y} \right) \cdot
+            \left( x\basis{y} - y\basis{x} \right) \Big]
+\end{align}
+At this point we can eliminate several of these terms.
+
+Firstly:
+\begin{align}
+    \nabla \left( \logg{F} \right) \cdot \left( \nabla \phi \right)
+    &= \left( \frac{\nabla F}{F} \right) \cdot \left( \nabla \phi \right) \\
+    &= \frac{1}{F} \left( \nabla F \right) \cdot \left( \nabla \phi \right) \\
+    &= 0 ~\textrm{from before}
+\end{align}
+And also:
+\begin{align}
+    \left( \mathbf{x} + \mathbf{y} \right) \cdot \left( x\basis{y} - y\basis{x}
+        \right)
+    &= \left( x\basis{x} + y\basis{y} \right) \cdot \left( x\basis{y} - y\basis{x}
+        \right) \\
+    &= \left( x \right) \left( -y \right) + \left( y \right) \left( x
+        \right) \\
+    &= 0
+\end{align}
+Thus we are left with:
+\begin{align}
+    \div{J}_c = -2 \mu F^2 \mathcal{M} e^{- \mu \left(x^2 + y^2 \right)} \left[
+            \nabla \left( \logg{F} \right) \cdot \left( x\basis{y} - y\basis{x}
+            \right) + \nabla \phi \cdot \left( \mathbf{x} + \mathbf{y} \right)
+            \right]
+\end{align}
+As explained previously, as $\logg{f(x,y)}$ is analytic in the region we concern
+ourselves with, it obeys the Cauchy-Riemann equations:
+\begin{align}
+    \partial_x \left( \logg{F} \right) &= \partial_y \phi ~\textrm{and}~
+        \partial_y \left( \logg{F} \right) = - \partial_x \phi \\
+    \Rightarrow \nabla \phi &= \colvec{3}{\partial_x \phi}{\partial_y
+        \phi}{0} = \colvec{3}{- \partial_y \logg{F}}{\partial_x \logg{F}}{0} \\
+    &= \colvec{3}{0}{0}{1} \times \colvec{3}{\partial_x \logg{F}}{\partial_y
+        \logg{F}}{0} \\
+    &= \basis{z} \times \nabla \logg{F}
+\end{align}
+Thus the factors in our expression for $\div{J}_c$ can be expressed by the
+cyclic permutation of the triple scalar product as:
+\begin{align}
+    \nabla \phi \cdot \left( \mathbf{x} + \mathbf{y} \right)
+    &= \left( \mathbf{x} + \mathbf{y} \right) \cdot \nabla \phi \\
+    &= \left( \mathbf{x} + \mathbf{y} \right) \cdot
+        \left( \basis{z} \times \nabla \logg{F} \right) \\
+    &= \nabla \logg{F} \cdot \left[ \left( \mathbf{x} + \mathbf{y} \right)
+        \times \basis{z} \right] \\
+    &= \nabla \logg{F} \cdot \left[ \colvec{3}{x}{y}{0} \times
+        \colvec{3}{0}{0}{1} \right] \\
+    &= \nabla \logg{F} \cdot \colvec{3}{y}{-x}{0} \\
+    &= - \nabla \logg{F} \cdot \left( x\basis{y} - y\basis{x} \right)
+\end{align}
+The bracket in $\div{J}_c$ therefore cancels and is null, meaning that due to
+the analyticity of $f(x,y)$ and nothing more, the associated probability current
+is necessarily divergenceless, $\div{J}_c = 0$.
+
+As the probability current for this problem does not explicitly depend on time:
+\begin{align}
+    \rho_c &= F^2 \mathcal{M} e^{-\mu \left(x^2 + y^2 \right)} \\
+    \Rightarrow \partial_t \rho_c &= 0
+\end{align}
+Then the requirement of the continuity is simply:
+\begin{align}
+    \div{J}_c + \partial_t \rho_c = 0 \\
+    \Rightarrow \div{J}_c = 0
+\end{align}
+Which has just been shown to be automatically satisfied.
+
+\section{Conclusion}
+
+Thus, nothing more than the analyticity of $f(x,y)$ is needed to ensure that the
+corresponding probability current, $\mathbf{J}_c$, satisfies the continuity
+equation. An interesting follow up question to this is whether choosing any
+$\mathbf{J}_c$ such that $\div{J}_c = 0$ automatically satisfies the analyticity of
+$f(x,y)$, or whether the restriction of analyticity on $f(x,y)$ is stricter than
+the condition of divergencelessness on $\mathbf{J}_c$.
 
 \end{document}

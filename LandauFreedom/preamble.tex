@@ -14,6 +14,24 @@
 \setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
 {\box0\lower0.4pt\box2}}
 
+% Column vector macro: \colvec{num comp.}{a}{b}{..}
+\newcount\colveccount
+\newcommand*\colvec[1]{
+        \global\colveccount#1
+        \begin{pmatrix}
+        \colvecnext
+}
+\def\colvecnext#1{
+        #1
+        \global\advance\colveccount-1
+        \ifnum\colveccount>0
+                \\
+                \expandafter\colvecnext
+        \else
+                \end{pmatrix}
+        \fi
+}
+
 \newcommand\defeq{\stackrel{\mathclap{\normalfont\mbox{\tiny def}}}{=}}
 \newcommand{\logg}[1]{\log \left\{ #1 \right\}}
 \newcommand{\Ree}[1]{\Re \left\{ #1 \right\}}
