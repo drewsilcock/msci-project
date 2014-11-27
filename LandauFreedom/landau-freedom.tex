@@ -12,6 +12,37 @@
 
 \section{Introduction}
 
+We previously saw the ground state wavefunction solutions to the Landau problem
+-- a constant-everywhere magnetic field $\mathbf{B} = B\basis{z}$ -- for the
+straight and circular gauges.
+
+This article aims to investigate the requirement that the function factor
+$f(x,y)$ in $\Psi_{c,0}(x,y,t)$ be analytic with the requirement of continuity,
+namely $\div{J} + \partial_t \rho = 0$.
+
+\section{Circular gauge wavefunction and probability current for Landau problem}
+
+When choosing the circular gauge, $\mathbf{A} = \frac{1}{2} B \left( x\basis{y}
+- y\basis{x} \right)$, the ground state wavefunction solution is:
+\begin{align}
+    \Psi_{c,0}(x,y,t) = \mathcal{N} f(x,y)
+    e^{- \frac{1}{2} \mu \left( x^2 + y^2 \right)} e^{-i \frac{1}{2} \hbar
+    \Omega t}
+\end{align}
+Where $\mathcal{N}$ is a generic normalisation factor, $\mu = \frac{1}{2} \frac{M
+\Omega}{\hbar}$ is written for brevity, $M$ is the mass, $\Omega$ is the angular
+frequency of the wavefunction and $f(x,y)$ is an analytic function representing
+the degeneracy present in this two-dimensional Gaussian hill, originating from
+the freedom in choosing the original gauge. If we write $f(x,y)$ as $f(x,y) =
+F e^{i \phi}$, where $F, \phi \in \mathbb{R}$, then the probability current is:
+\begin{align}
+    \mathbf{J}_c = F^2 \mathcal{M} e^{- \mu \left(
+        x^2 + y^2 \right)} \left( \nabla \phi - \mu \left( x \basis{y}
+        - y \basis{x} \right) \right)
+\end{align}
+Where $\mathcal{M} = \frac{\hbar}{M} \mathcal{N}^2$ is a constant of
+normalisation, contracted for brevity.
+
 \section{Analyticity of $f(x,y)$}
 
 \textbf{Todo:} Find out why $f(x,y)$ has to be analytic
@@ -132,8 +163,38 @@ this gives the important result:
     \left( \nabla F \right) \cdot \left( \nabla \phi \right) = 0
 \end{equation}
 
+
 \section{Locking the analyticity of $f(x,y)$ to the continuity of $\mathbf{J}$}
 
-Now we can examine what these
+Now we can examine what these facts about $f(x,y)$ say about the quantity
+$\div{J}$:
+\begin{align}
+    \div{J}_c &= \nabla \cdot \left[ F^2 \mathcal{M}^2 e^{-
+        \mu \left( x^2 + y^2 \right)} \left(
+        \nabla \phi - \mu \left( x\basis{y} -
+        y\basis{x} \right) \right) \right] \\
+    &= \mathcal{M} \left\{ \left[
+        \nabla \left( F^2 e^{- \mu \left( x^2 + y^2 \right)} \right) \right]
+        \cdot \left[ \nabla \phi - \mu \left( x\basis{y} - y \basis{x} \right)
+        \right]
+        + F^2 e^{- \mu \left( x^2 + y^2 \right)} \left[ \nabla^2 \phi - \mu \nabla
+        \cdot \left( x\basis{y} - y\basis{x} \right) \right]
+        \right\}
+\end{align}
+But $\nabla^2 \phi = 0$ from earlier, as $\logg{f(x,y)}$ is analytic on
+$\mathbb{C} \setminus \left\{ f(x,y) \in \mathbb{R} : f(x,y) \leq 0 \right\}$, and:
+\begin{align}
+    \nabla \cdot \left( x\basis{y} - y\basis{x} \right)
+    &= \partial_y \left( x \right) - \partial_x \left( y \right) \\
+    &= 0
+\end{align}
+So the divergence of $\mathbf{J}_c$ can be simplified to:
+\begin{align}
+    \div{J}_c = \mathcal{M} \left\{
+        \left[ \nabla \left( F^2 e^{- \mu \left( x^2 + y^2 \right)} \right)
+            \right] \cdot
+            \left[ \nabla \phi - \mu \left( x \basis{y} - y \basis{x} \right)
+        \right] \right\}
+\end{align}
 
 \end{document}
