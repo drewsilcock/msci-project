@@ -1,28 +1,35 @@
 \section{Gauge Invariant Schr\"odinger Equation}
 \label{sec:gise}
 
+\subsection{Motivation}
+
 To begin exploring how these unphysical gauge dependent quantities can be
 circumvented, we derive a version of the Schr\"odinger equation for a particle
 in an electromagnetic field in terms of only gauge invariant quantities. This
 will be of particular interest when investigating the Aharanov-Bohm effect (see
 FUTURE RESEARCH).
 
+\subsection{The Standard Schr\"odinger Equation}
+
 The Schr\"odinger equation for a particle in an electromagnetic field is given
 by:
 \begin{align}
-    i \hbar \dbydt{\Psi} = \frac{1}{2m}\mathbf{\Pi}^2 \Psi + V \Psi
+    i \hbar \dbydt{\Psi} = \frac{1}{2m}\mathbf{\Pi}^2 \Psi + \phi \Psi
     \label{eqn:schrodinger}
 \end{align}
-where $\Psi$ is the wavefunction, $m$ is the particle mass, $V$ is the electric
-potential and $\mathbf{\Pi} = \mathbf{p} - q\mathbf{A}$ is the canonical momentum for
-kinetic momentum $\mathbf{p} = - i \hbar \nabla$ and vector potential
-$\mathbf{A}$\cite[Ch. 4]{aharonov-rohrlich-2008}. This contains the
-gauge-dependent and unphysical quantities $\Psi$, $\mathbf{A}$ and $V$.
+where $\Psi$ is the wavefunction, $m$ is the particle mass, $\phi$ is the
+electric potential, $\mathbf{\Pi} = \mathbf{p} - q\mathbf{A}$ is the canonical
+momentum, $\mathbf{p} = - i \hbar \nabla$ is the kinetic momentum and
+$\mathbf{A}$ is the vector potential \cite[Ch. 4]{aharonov-rohrlich-2008}. This
+contains the gauge-dependent and unphysical quantities $\Psi$, $\mathbf{A}$ and
+$V$.
 
 Defining the probability density and current as $\rho \defeq \Psi^*\Psi$ and
 $\mathbf{J} \defeq \frac{1}{2m}\left( \Psi^* \mathbf{\Pi} \Psi + \Psi
 \mathbf{\Pi}^* \Psi^* \right)$, respectively, we can reconstruct Equation
 \ref{eqn:schrodinger} in terms of only gauge invariant quantities.
+
+\subsection{Verifying Continuity}
 
 First we note that
 \begin{align}
@@ -36,9 +43,30 @@ Thus, the divergence of $\mathbf{J}$ is simply:
                 \mathbf{A} \cdot \nabla \rho + \rho \nabla \cdot
                 \mathbf{A} \right)
 \end{align}
-
-Using this, we confirm that the continuity equation holds as expected:
+Inputting Equation \ref{eqn:schrodinger} changes causes the terms in
+$\mathbf{A}$ to cancel, and converts the \nth{2} order space
+derivative to a \nth{1} order time derivative, leaving just:
+\begin{align}
+    \div{J} &= -2 \Ree{\Psi^* \dbydt{\Psi}} \\
+            &= - \left( \Psi^* \dbydt{\Psi}
+               + \Psi \dbydt{\Psi^*} \right) \\
+            &= - \dbydt{\rho}
+\end{align}
+Thus we confirm that the continuity equation holds as expected:
 \begin{align}
     \div{J} + \dbydt{\rho} = 0
     \label{eqn:continuity}
+\end{align}
+
+\subsection{Transfer to Gauge Invariant Quantities}
+
+Using this continuity equation, the definitions for the probability density and
+current and the equation for the electric field $\mathbf{E} = - \nabla \phi -
+\dbydt{\mathbf{A}}$, we showed that Equation \ref{eqn:schrodinger} can be recast
+in terms of only the gauge invariant variables $\mathbf{J}$, $\rho$ and
+$\mathbf{E}$.
+
+To see this, we write the wavefunction as:
+\begin{align}
+    \Psi = \sqrt{\rho} e^{i \theta}
 \end{align}
