@@ -1,33 +1,29 @@
-\documentclass{article}
+\documentclass[twocolumn,nobalancelastpage,prl,aps,10pt]{revtex4-1}
 
 \input{preamble}
 
+\begin{document}
+
 \title{Literature Review}
 \author{Drew Silcock}
-\date{}
+\affiliation{Level 3 MSci. Laboratory, Department of Physics, University of Bristol.}
+\date{\today}
 
-\begin{document}
+\begin{abstract}
+
+    Should I have an abstract or an introduction, or both?
+
+\end{abstract}
 
 \maketitle
 
-\section{Todo}
-
-Here's a list of literature to read and talk about:
-
-\begin{enumerate}
-    \item \textbf{Y. Aharonov} and \textbf{D. Rohrlich} - Quantum Paradoxes, Chapter 4
-    \item \textbf{J. H. Hannay} - The chaotic analytic function
-\end{enumerate}
-
-\noindent Here's a list of things to talk about that I've done so far:
-
-\begin{enumerate}
-    \item Deriving the gauge invariant Schr\"odinger equation
-    \item Deriving the free space Greens function from the propagator
-    \item The probability current for the ground state solutions to the Landau
-        problem in the straight (or Landau) and circular gauges
-    \item Locking the analyticity of $f(x,y)$ to continuity
-\end{enumerate}
+\input{sections/todo}
+\input{sections/introduction}
+\input{sections/literature}
+\input{sections/gise}
+\input{sections/landau}
+\input{sections/future}
+\input{sections/conclusion}
 
 \nocite{*}
 \bibliographystyle{unsrt}

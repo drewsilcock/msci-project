@@ -1,0 +1,44 @@
+\section{Gauge Invariant Schr\"odinger Equation}
+\label{sec:gise}
+
+To begin exploring how these unphysical gauge dependent quantities can be
+circumvented, we derive a version of the Schr\"odinger equation for a particle
+in an electromagnetic field in terms of only gauge invariant quantities. This
+will be of particular interest when investigating the Aharanov-Bohm effect (see
+FUTURE RESEARCH).
+
+The Schr\"odinger equation for a particle in an electromagnetic field is given
+by:
+\begin{align}
+    i \hbar \dbydt{\Psi} = \frac{1}{2m}\mathbf{\Pi}^2 \Psi + V \Psi
+    \label{eqn:schrodinger}
+\end{align}
+where $\Psi$ is the wavefunction, $m$ is the particle mass, $V$ is the electric
+potential and $\mathbf{\Pi} = \mathbf{p} - q\mathbf{A}$ is the canonical momentum for
+kinetic momentum $\mathbf{p} = - i \hbar \nabla$ and vector potential
+$\mathbf{A}$\cite[Ch. 4]{aharonov-rohrlich-2008}. This contains the
+gauge-dependent and unphysical quantities $\Psi$, $\mathbf{A}$ and $V$.
+
+Defining the probability density and current as $\rho \defeq \Psi^*\Psi$ and
+$\mathbf{J} \defeq \frac{1}{2m}\left( \Psi^* \mathbf{\Pi} \Psi + \Psi
+\mathbf{\Pi}^* \Psi^* \right)$, respectively, we can reconstruct Equation
+\ref{eqn:schrodinger} in terms of only gauge invariant quantities.
+
+First we note that
+\begin{align}
+    \mathbf{J} &= \frac{1}{m} \Ree{\Psi^* \mathbf{\Pi} \Psi} \\
+               &= \frac{\hbar}{m} \Imm{\Psi^* \nabla \Psi} - \frac{q}{m} \rho
+                    \mathbf{A}
+\end{align}
+Thus, the divergence of $\mathbf{J}$ is simply:
+\begin{align}
+    \div{J} &= \frac{\hbar}{m} \Imm{\Psi^* \nabla^2 \Psi} - \frac{q}{m} \left(
+                \mathbf{A} \cdot \nabla \rho + \rho \nabla \cdot
+                \mathbf{A} \right)
+\end{align}
+
+Using this, we confirm that the continuity equation holds as expected:
+\begin{align}
+    \div{J} + \dbydt{\rho} = 0
+    \label{eqn:continuity}
+\end{align}

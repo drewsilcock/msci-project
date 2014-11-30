@@ -1,8 +1,6 @@
 \usepackage{mathtools}
 \usepackage{amssymb}
 
-\newcommand\defeq{\stackrel{\mathclap{\normalfont\mbox{\tiny def}}}{=}}
-
 % New definition of square root:
 % it renames \sqrt as \oldsqrt
 \let\oldsqrt\sqrt
@@ -13,3 +11,10 @@
 \advance\dimen0-0.2\\ht0
 \setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
 {\box0\lower0.4pt\box2}}
+
+\newcommand{\defeq}{\stackrel{\mathclap{\normalfont\mbox{\tiny def}}}{=}}
+\newcommand{\dbydt}[1]{\frac{\partial #1}{\partial t}}
+\newcommand{\Ree}[1]{\Re \left\{ #1 \right\}}
+\newcommand{\Imm}[1]{\Im \left\{ #1 \right\}}
+
+\renewcommand{\div}[1]{\nabla \cdot \mathbf{ #1 }}
