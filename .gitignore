@@ -111,3 +111,6 @@ sympy-plots-for-*.tex/
 # vim files
 *~
 .*.swp
+
+# I don't know why these have started appearing, but they're empty
+*Notes.bib

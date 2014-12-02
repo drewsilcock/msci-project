@@ -11,23 +11,26 @@ FUTURE RESEARCH).
 
 \subsection{The Standard Schr\"odinger Equation}
 
-The Schr\"odinger equation for a particle in an electromagnetic field is given
-by:
+The Schr\"odinger equation for a particle of mass $m$ and charge $q$ in an
+electromagnetic field is given by:
 \begin{align}
-    i \hbar \dbydt{\Psi} = \frac{1}{2m}\mathbf{\Pi}^2 \Psi + \phi \Psi
+    i \hbar \dbydt{\Psi} = \frac{1}{2m}\mathbf{\Pi}^2 \Psi + qV \Psi
     \label{eqn:schrodinger}
 \end{align}
-where $\Psi$ is the wavefunction, $m$ is the particle mass, $\phi$ is the
-electric potential, $\mathbf{\Pi} = \mathbf{p} - q\mathbf{A}$ is the canonical
-momentum, $\mathbf{p} = - i \hbar \nabla$ is the kinetic momentum and
-$\mathbf{A}$ is the vector potential \cite[Ch. 4]{aharonov-rohrlich-2008}. This
-contains the gauge-dependent and unphysical quantities $\Psi$, $\mathbf{A}$ and
-$V$.
+where $\Psi$ is the wavefunction, $V$ is the electric potential, $\mathbf{\Pi} =
+\mathbf{p} - q\mathbf{A}$ is the canonical momentum, $\mathbf{p} = - i \hbar
+\nabla$ is the kinetic momentum and $\mathbf{A}$ is the vector potential
+\cite[Chapter 4]{aharonov-rohrlich}\cite[Page 456]{landau-lifshitz-quantum}.
 
-Defining the probability density and current as $\rho \defeq \Psi^*\Psi$ and
-$\mathbf{J} \defeq \frac{1}{2m}\left( \Psi^* \mathbf{\Pi} \Psi + \Psi
-\mathbf{\Pi}^* \Psi^* \right)$, respectively, we can reconstruct Equation
-\ref{eqn:schrodinger} in terms of only gauge invariant quantities.
+This contains the gauge-dependent and unphysical quantities $\Psi$, $\mathbf{A}$
+and $V$, but defining the probability density and current as
+\begin{align}
+    \rho &= \Psi^*\Psi \\
+    \mathrm{and}~ \mathbf{J} &= \frac{1}{2m}\left( \Psi^* \mathbf{\Pi}
+        \Psi + \Psi \mathbf{\Pi}^* \Psi^* \right),
+\end{align}
+we can reconstruct Equation \ref{eqn:schrodinger} in terms of only gauge
+invariant quantities.
 
 \subsection{Verifying Continuity}
 
@@ -61,12 +64,75 @@ Thus we confirm that the continuity equation holds as expected:
 \subsection{Transfer to Gauge Invariant Quantities}
 
 Using this continuity equation, the definitions for the probability density and
-current and the equation for the electric field $\mathbf{E} = - \nabla \phi -
+current and the equation for the electric field $\mathbf{E} = - \nabla V -
 \dbydt{\mathbf{A}}$, we showed that Equation \ref{eqn:schrodinger} can be recast
 in terms of only the gauge invariant variables $\mathbf{J}$, $\rho$ and
 $\mathbf{E}$.
 
-To see this, we write the wavefunction as:
+To see this, we write the wavefunction as
 \begin{align}
-    \Psi = \sqrt{\rho} e^{i \theta}
+    \Psi = \sqrt{\rho} e^{i \theta}, ~ \theta \in \mathbb{R}.
 \end{align}
+Then the derivatives of $\Psi$ in space and time are
+\begin{align}
+    \nabla \Psi &= \Psi \left( \frac{1}{2} \frac{\nabla
+        \rho}{\rho} + i \nabla \theta \right) \\
+    \dot \Psi &= \Psi \left( \frac{1}{2} \frac{\dot
+        \rho}{\rho} + i \dot \theta \right),
+\end{align}
+where $\dot \Psi \defeq \dbydt{\Psi}$. This means that the probability current
+can be expressed in the simple form
+\begin{align}
+    \mathbf{J} = \frac{\hbar}{m} \rho \left( \nabla \theta - \frac{q}{\hbar}
+        \mathbf{A} \right)
+    \label{eqn:current}
+\end{align}
+Using this, we show that the time derivative of $\frac{m \mathbf{J}}{\rho}$ is
+the simple expression
+\begin{align}
+    \frac{\partial}{\partial t}\left(\frac{m \mathbf{J}}{\rho}\right)
+        = \hbar \nabla \dot \theta - q\mathbf{\dot A}.
+\end{align}
+Using the Schr\"odinger equation and the continuity equation to replace the
+$\dot \theta$ with the spatial derivatives $\nabla^2 \theta$, and replace the
+time derivative of $\mathbf{A}$ with $\mathbf{E}$ and $V$ via the equation
+\begin{align}
+    \mathbf{E} = - \nabla V - \mathbf{\dot A},
+\end{align}
+we get a third order space derivative in $\rho$, a second order space derivative
+in $\theta$ and a first order space derivative in $\mathbf{A}$. Using Equation
+\ref{eqn:current}, the terms in $\mathbf{A}$ and $\theta$ can be combined into a
+single gauge invariant factor $\nabla \left( \frac{m \mathbf{J}^2}{2 \rho^2}
+\right)$, giving a version of the Schr\"odinger equation in terms of only gauge
+invariant quantities:
+\begin{align}
+    \frac{\partial}{\partial t} \left( \frac{m \mathbf{J}}{\rho} \right)
+    =& \nabla \left( \frac{\hbar^2}{4m\rho} \nabla^2 \rho -
+       \frac{\hbar^2}{8m\rho^2} \left(\nabla \rho \right)^2 - \frac{m
+       \mathbf{J}^2}{2 \rho^2} \right) \notag \\
+    &  + q\mathbf{E}
+    \label{eqn:gise}
+\end{align}
+
+Thus, we have a version of the Schr\"odinger equation for a particle in an
+electromagnetic field without any reference to gauge dependent quantities like
+the wavefunction or potentials. As Aharonov and Rohrlich demonstrate
+\cite{aharonov-rohrlich}, this formulation encounters problems when the initial
+wavefunction $\Psi(\mathbf{r}, 0)$ is only non-zero in two disjointed regions
+(i.e. $\Psi(\mathbf{r}, 0)$ is not simply connected). In particular,
+$\rho(\mathbf{r}, 0)$ and $\mathbf{J}(\mathbf{r}, 0)$ do not uniquely determine
+the wavefunction $\Psi(\mathbf{r}, t)$ for all future times $t > 0$.
+Interestingly, this is the Aharonov-Bohm case; exactly when the vector potential
+$\mathbf{A}$ has an important impact of the observable physics is when the gauge
+invariant reformulation lacks full predictive power.
+
+In addition, the transfer to gauge invariant variables has increased the order
+of the space derivative; where originally the Schr\"odinger equation relates a
+first order time derivative to a second order space derivative, Equation
+\ref{eqn:gise} relates a first order time derivative to a third order space
+derivative. It is clear, then, how much simpler the gauge dependent variables
+are to use for actual quantum calculations, particularly when your theory
+becomes relativistic as with the Higgs Mechanism
+\cite{higgs-1964,englert-brout,guralnik-hagen-kibble}.
+% Make sure I don't dig myself into a hole here, I talk earlier about how Higgs
+% did indeed formulate his mechanism in gauge invariant terms

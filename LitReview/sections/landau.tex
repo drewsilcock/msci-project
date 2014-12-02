@@ -1,2 +1,46 @@
 \section{Gauge Freedom in the Landau Problem}
 \label{sec:landau}
+
+\subsection{The Landau Problem}
+
+Next we investigated the degrees of gauge freedom present in the Landau problem
+of a uniform everywhere magnetic field, $\mathbf{B} = B \basis{z}$. Of
+particular interest is how the ground state wavefunction gains the freedom from
+the choice of gauge. This is examined explicitly for the straight (sometimes
+called the Landau) and for the circular (sometimes called symmetric) gauges.
+
+\subsection{The Straight Gauge}
+
+In the straight gauge,
+\begin{align}
+    \mathbf{A} = Bx\basis{y}
+    \label{eqn:straight-gauge}
+\end{align}
+the ground state solution for the wavefunction is
+\begin{align}
+    \Psi_{s,0}(x,t) = \mathcal{N} e^{- \frac{1}{2} \mymu x^2} e^{-i \frac{1}{2}
+        \hbar \Omega t},
+\end{align}
+where $\mathcal{N}$ is a normalisation factor and $\Omega = \frac{qB}{m}$ is the
+angular frequency of the solution \cite{murayama}. Thus the probability density
+and phase of the wavefunction are
+\begin{align}
+    \rho = \mathcal{N}^2 e^{- \mymu x^2} \\
+    \mathrm{and}~ \theta = - \frac{1}{2} \hbar \Omega t,
+\end{align}
+and the probability current is simply
+\begin{align}
+    \mathbf{J}_s &= \frac{\hbar}{m} \mathcal{N}^2 e^{- \mymu x^2} \left(
+        \nabla \left\{ -\frac{1}{2} \hbar \Omega t \right\} - \frac{q}{\hbar} B
+        x \basis{y} \right) \\
+    &= - \Omega \mathcal{N}^2 e^{- \mymu x^2} x\basis{y} ~\mathrm{as}~
+        \nabla \left\{ -\frac{1}{2} \hbar \Omega t \right\} = 0,
+\end{align}
+as plotted in Figure \ref{fig:straight}
+
+\begin{figure}
+    \includegraphics[width=\linewidth]{straight-gauge}
+    \caption{The ground state probability current associated with the straight
+        gauge, $\mathbf{A} = Bx\basis{y}$.}
+    \label{fig:straight}
+\end{figure}
