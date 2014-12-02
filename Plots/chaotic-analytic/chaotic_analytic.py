@@ -47,6 +47,9 @@ def contour_plot(x, y, values):
 
 
 def stream_plot(x, y, vector):
+    """ Plot a vector field using the `stream` plotting method; more like the
+    flow of a river and therefore good for thinking about the divergence and
+    curl, but perhaps less intuitively useful. """
 
     fig = plt.figure()
 
@@ -60,6 +63,9 @@ def stream_plot(x, y, vector):
 
 
 def quiv_plot(x, y, vector):
+    """ Plot a vector field using the `quiver` plotting method; looks like
+    little arrows pointing, makes for a good intuitive picture of the vector
+    field. """
 
     fig = plt.figure()
 
