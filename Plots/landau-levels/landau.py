@@ -4,20 +4,26 @@ from math import e
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.cm import hot, gray, hsv
+from matplotlib import rc
 from mpl_toolkits.mplot3d import Axes3D
 
 hbar = 1
 normalisation = 1
 mass = 1
-ang_freq = 1
+ang_freq = 2
 plotdir = "plots/"
 
+rc('text', usetex=True)
 
-def plot_cont_mag(x, y, cpx_number, fname=False):
+
+def plot_cont_mag(x, y, cpx_number, title=False, fname=False):
 
     fig = plt.figure()
 
     cont_mag_plot = plt.contourf(x, y, abs(cpx_number), 100, cmap=hot)
+
+    plt.xlabel(r"This is a test")
+    plt.title(title)
 
     if fname:
         plt.savefig(plotdir + fname + ".eps")
@@ -28,13 +34,17 @@ def plot_cont_mag(x, y, cpx_number, fname=False):
     return True
 
 
-def plot_surf_mag(x, y, cpx_number, fname=False):
+def plot_surf_mag(x, y, cpx_number, title=False, fname=False):
 
     fig = plt.figure()
     axes = fig.gca(projection='3d')
 
     surf_mag_plot = axes.plot_surface(x, y, abs(cpx_number), cmap=hot,
                                       linewidth=0, antialiased=True)
+
+    if title:
+        plt.title(title)
+
     if fname:
         plt.savefig(plotdir + fname + ".eps")
         print "Figure '" + fname + "' successfully saved."
@@ -44,12 +54,15 @@ def plot_surf_mag(x, y, cpx_number, fname=False):
     return True
 
 
-def plot_phase(x, y, cpx_number, fname=False):
+def plot_phase(x, y, cpx_number, title=False, fname=False):
 
     fig = plt.figure()
 
     phase_plot = plt.contourf(x, y, np.angle(cpx_number), 100, cmap=hsv)
 
+    if title:
+        plt.title(title)
+
     if fname:
         plt.savefig(plotdir + fname + ".eps")
         print "Figure '" + fname + "' successfully saved."
@@ -59,15 +72,18 @@ def plot_phase(x, y, cpx_number, fname=False):
     return True
 
 
-def plot_stream_vector(x, y, vector, fname=False):
+def plot_stream_vector(x, y, vector, title=False, fname=False):
 
     fig = plt.figure()
 
     mag = np.sqrt(np.power(abs(vector[0]), 2) + np.power(abs(vector[1]), 2))
     lw = 5*mag/mag.max()
 
-    vect_plot = plt.streamplot(x, y, vector[0], vector[1],
+    stream_plot = plt.streamplot(x, y, vector[0], vector[1],
                                linewidth=lw, color='k', density=0.6)
+
+    if title:
+        plt.title(title)
 
     if fname:
         plt.savefig(plotdir + fname + ".eps")
@@ -78,12 +94,15 @@ def plot_stream_vector(x, y, vector, fname=False):
     return True
 
 
-def plot_quiv_vector(x, y, vector, fname=False):
+def plot_quiv_vector(x, y, vector, title=False, fname=False):
 
     fig = plt.figure()
 
     quiver_plot = plt.quiver(vector[0][::20, ::20], vector[1][::20, ::20],
                              scale=1/0.1)
+
+    if title:
+        plt.title(title)
 
     if fname:
         plt.savefig(plotdir + fname + ".eps")
@@ -159,17 +178,33 @@ def main():
     print "Probability currents successfully calculated."
 
     print "Plotting wavefunctions..."
-    plot_cont_mag(X, Y, psi_str, fname="str_psi_cont")
-    plot_surf_mag(X, Y, psi_str, fname="str_psi_surf")
-    plot_cont_mag(X, Y, psi_circ, fname="circ_psi_cont")
-    plot_surf_mag(X, Y, psi_circ, fname="circ_psi_surf")
+    plot_cont_mag(X, Y, psi_str,
+                  title="Straight Gauge Wavefunction, $\Psi_{s,0}$",
+                  fname="str_psi_cont")
+    plot_surf_mag(X, Y, psi_str,
+                  title="Straight Gauge Wavefunction, $\Psi_{s,0}$",
+                  fname="str_psi_surf")
+    plot_cont_mag(X, Y, psi_circ,
+                  title="Circular Gauge Wavefunctionm $\Psi_{c,0}$",
+                  fname="circ_psi_cont")
+    plot_surf_mag(X, Y, psi_circ,
+                  title="Circular Gauge Wavefunctionm $\Psi_{c,0}$",
+                  fname="circ_psi_surf")
     print "Wavefunctions successfully plotted."
 
     print "Plotting probability currents..."
-    plot_quiv_vector(X, Y, j_str, fname="str_j_quiv")
-    plot_stream_vector(X, Y, j_str, fname="str_j_stream")
-    plot_quiv_vector(X, Y, j_circ, fname="circ_j_quiv")
-    plot_stream_vector(X, Y, j_circ, fname="circ_j_stream")
+    plot_quiv_vector(X, Y, j_str,
+                     title="Straight Gauge Probability Current, $\mathbf{J}_s$",
+                     fname="str_j_quiv")
+    plot_stream_vector(X, Y, j_str,
+                       title="Straight Gauge Probability Current, $\mathbf{J}_s$",
+                       fname="str_j_stream")
+    plot_quiv_vector(X, Y, j_circ,
+                     title="Straight Gauge Probability Current, $\mathbf{J}_c$",
+                     fname="circ_j_quiv")
+    plot_stream_vector(X, Y, j_circ,
+                       title="Straight Gauge Probability Current, $\mathbf{J}_c$",
+                       fname="circ_j_stream")
     print "Probability currents successfully plotted."
 
     return True
