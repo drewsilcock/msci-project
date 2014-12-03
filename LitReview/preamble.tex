@@ -1,6 +1,12 @@
 \usepackage{mathtools}
 \usepackage{amssymb}
+\usepackage{graphicx}
 \usepackage[super]{nth}
+\usepackage{subcaption}
+\usepackage{cleveref}
+
+\DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg}
+\graphicspath{{figures/}}
 
 % New definition of square root:
 % it renames \sqrt as \oldsqrt
@@ -15,9 +21,11 @@
 
 \newcommand{\defeq}{\stackrel{\mathclap{\normalfont\mbox{\tiny def}}}{=}}
 \newcommand{\dbydt}[1]{\frac{\partial #1}{\partial t}}
+\newcommand{\logg}[1]{\log \left\{ #1 \right\}}
 \newcommand{\Ree}[1]{\Re \left\{ #1 \right\}}
 \newcommand{\Imm}[1]{\Im \left\{ #1 \right\}}
 \newcommand{\basis}[1]{\mathbf{\hat #1 }}
 \newcommand{\mymu}[0]{\frac{m \Omega}{\hbar}}
+\newcommand{\colvec}[3]{\begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}}
 
 \renewcommand{\div}[1]{\nabla \cdot \mathbf{ #1 }}
