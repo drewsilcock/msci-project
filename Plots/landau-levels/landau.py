@@ -4,6 +4,7 @@ from math import e
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.cm import hot, gray, hsv
+import matplotlib
 from matplotlib import rc
 from mpl_toolkits.mplot3d import Axes3D
 
@@ -12,8 +13,7 @@ normalisation = 1
 mass = 1
 ang_freq = 2
 plotdir = "plots/"
-
-rc('text', usetex=True)
+ext = ".eps"
 
 
 def plot_cont_mag(x, y, cpx_number, title=False, fname=False):
@@ -22,11 +22,18 @@ def plot_cont_mag(x, y, cpx_number, title=False, fname=False):
 
     cont_mag_plot = plt.contourf(x, y, abs(cpx_number), 100, cmap=hot)
 
-    plt.xlabel(r"This is a test")
-    plt.title(title)
+    plt.tick_params(\
+        axis='both', which='both',
+        bottom='off', top='off', left='off', right='off',
+        labelbottom='off', labeltop='off', labelleft='off', labelright='off')
+    plt.xlabel("$x$")
+    plt.ylabel("$y$")
+
+    if title:
+        plt.title(title)
 
     if fname:
-        plt.savefig(plotdir + fname + ".eps")
+        plt.savefig(plotdir + fname + ext)
         print "Figure '" + fname + "' successfully saved."
     else:
         plt.show()
@@ -42,11 +49,18 @@ def plot_surf_mag(x, y, cpx_number, title=False, fname=False):
     surf_mag_plot = axes.plot_surface(x, y, abs(cpx_number), cmap=hot,
                                       linewidth=0, antialiased=True)
 
+    plt.tick_params(\
+        axis='both', which='both',
+        bottom='off', top='off', left='off', right='off',
+        labelbottom='off', labeltop='off', labelleft='off', labelright='off')
+    plt.xlabel("$x$")
+    plt.ylabel("$y$")
+
     if title:
         plt.title(title)
 
     if fname:
-        plt.savefig(plotdir + fname + ".eps")
+        plt.savefig(plotdir + fname + ext)
         print "Figure '" + fname + "' successfully saved."
     else:
         plt.show()
@@ -60,11 +74,18 @@ def plot_phase(x, y, cpx_number, title=False, fname=False):
 
     phase_plot = plt.contourf(x, y, np.angle(cpx_number), 100, cmap=hsv)
 
+    plt.tick_params(\
+        axis='both', which='both',
+        bottom='off', top='off', left='off', right='off',
+        labelbottom='off', labeltop='off', labelleft='off', labelright='off')
+    plt.xlabel("$x$")
+    plt.ylabel("$y$")
+
     if title:
         plt.title(title)
 
     if fname:
-        plt.savefig(plotdir + fname + ".eps")
+        plt.savefig(plotdir + fname + ext)
         print "Figure '" + fname + "' successfully saved."
     else:
         plt.show()
@@ -82,11 +103,18 @@ def plot_stream_vector(x, y, vector, title=False, fname=False):
     stream_plot = plt.streamplot(x, y, vector[0], vector[1],
                                linewidth=lw, color='k', density=0.6)
 
+    plt.tick_params(\
+        axis='both', which='both',
+        bottom='off', top='off', left='off', right='off',
+        labelbottom='off', labeltop='off', labelleft='off', labelright='off')
+    plt.xlabel("$x$")
+    plt.ylabel("$y$")
+
     if title:
         plt.title(title)
 
     if fname:
-        plt.savefig(plotdir + fname + ".eps")
+        plt.savefig(plotdir + fname + ext)
         print "Figure '" + fname + "' successfully saved."
     else:
         plt.show()
@@ -98,8 +126,15 @@ def plot_quiv_vector(x, y, vector, title=False, fname=False):
 
     fig = plt.figure()
 
-    quiver_plot = plt.quiver(vector[0][::20, ::20], vector[1][::20, ::20],
+    quiver_plot = plt.quiver(vector[0][::10, ::10], vector[1][::10, ::10],
                              scale=1/0.1)
+
+    plt.tick_params(\
+        axis='both', which='both',
+        bottom='off', top='off', left='off', right='off',
+        labelbottom='off', labeltop='off', labelleft='off', labelright='off')
+    plt.xlabel("$x$")
+    plt.ylabel("$y$")
 
     if title:
         plt.title(title)
@@ -163,8 +198,10 @@ def main():
     # Main function
 
     delta = 0.025
-    x = np.arange(-5.0, 5.0, delta)
-    y = np.arange(-5.0, 5.0, delta)
+    beg = -3
+    end = 3
+    x = np.arange(beg, end, delta)
+    y = np.arange(beg, end, delta)
     X, Y = np.meshgrid(x, y)
 
     print "Calculating wavefunctions..."

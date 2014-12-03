@@ -22,6 +22,10 @@ normalisation = 1
 mass = 1
 ang_freq = 2
 
+beg = -3
+end = 3
+delta = 0.25
+
 def surface_plot(x, y, values):
     """ Plots the matrix of (complex) values from the chaotic analytic function
     as surface plot. """
@@ -53,11 +57,18 @@ def stream_plot(x, y, vector):
 
     fig = plt.figure()
 
+    print vector[0][5,5]
+    print vector[1][5,5]
+    print vector[0].shape
+    print vector[1].shape
+
     mag = np.sqrt(np.power(abs(vector[0]), 2) + np.power(abs(vector[1]), 2))
     lw = 5 * mag/mag.max()
 
-    vect_plot = plt.streamplot(x, y, vector[0], vector[1])#,
-                               #linewidth=lw, color='k', density=0.6)
+    vect_plot = plt.streamplot(x, y, abs(vector[0]), abs(vector[1]))#,
+                               #linewidth=2, color='k', density=0.6)
+    plt.xlim(beg, end)
+    plt.ylim(beg, end)
 
     return True
 
@@ -69,11 +80,11 @@ def quiv_plot(x, y, vector):
 
     fig = plt.figure()
 
-    print vector[0][5,5].shape
-    print vector[1][5,5].shape
-
-    quiver_plot = plt.quiver(x[::5,::5], y[::5,::5], vector[0][::5, ::5], vector[1][::5, ::5])#,
+    quiver_plot = plt.quiver(x[::5,::5], y[::5,::5],
+                             abs(vector[0][::1, ::1]), abs(vector[1][::1, ::1]))#,
                              #scale=1)
+    plt.xlim(beg, end)
+    plt.ylim(beg, end)
 
     return True
 
@@ -81,21 +92,31 @@ def quiv_plot(x, y, vector):
 def generate_function():
     """ Generates the random chaotic analytic function. """
 
-    # TODO: Ask John to make sure the standard deviation is right here
-
-    trunc_index = 10 # The index to truncate to in Taylor expansion
+    trunc_index = 50 # The index to truncate to in Taylor expansion
 
     coeff_real = np.array([rand.normal(sqrt(0.5/factorial(n)), sqrt(0.5/factorial(n)))
-                           for n in range(trunc_index)])
+                           for n in xrange(trunc_index)])
     coeff_imag = np.array([rand.normal(sqrt(0.5/factorial(n)), sqrt(0.5/factorial(n)))
-                           for n in range(trunc_index)])
+                           for n in xrange(trunc_index)])
 
     coeff = coeff_real + coeff_imag*1j
 
+    print coeff
+
     analytic_func = lambda z: np.sum(np.array([coeff[i] * z**i
-                                               for i in range(trunc_index)]))
+                                               for i in xrange(trunc_index)]))
+
+    print analytic_func(1+1j)
+    print analytic_func(100+100j)
 
     return analytic_func
+
+
+def calculate_wavefunction(x, y, analytic_func):
+    """ Calculates the ground state in circular gauge for Landau problem, given
+    the analytic function f(x,y). """
+
+    return analytic_func(x + y*1j) * e**(-0.5 * (x**2 + y**2))
 
 
 def calculate_current(x, y, analytic_func):
@@ -103,29 +124,17 @@ def calculate_current(x, y, analytic_func):
     Landau problem, using the value of f(x,y) as the given chaotic analytic
     function. """
 
-    func_mod = np.array([[abs(analytic_func(xval + yval*1j)) for xval in x]
-                          for yval in y])
-    print "Function modulus calculated."
-
-    #func_phase = lambda X,Y: cmath.log(analytic_func(X + Y*1j)).imag # In terms of phase
-    func_logmod = lambda X,Y: math.log(abs(analytic_func(X + Y*1j))) # In terms of modulus
-    print "Function phase function declared."
-
-    print func_mod[0,0]
-    print func_logmod(1,1)
+    psi = lambda x,y: analytic_func(x + y*1j) * e**(-0.5 * (x**2 + y**2) )
+    psi_values = calculate_wavefunction(x, y, analytic_func)
 
     print "Calculating the x components of the probability current..."
-    current_x = func_mod**2 * \
-        np.power(e, (-(x**2 + y**2))) * \
-        (-partial_y(func_logmod, x, y) + y)
-        #(partial_x(func_phase, x, y) + y)
+    current_x = -0.5j*(np.ma.conjugate(psi_values) * partial_x(psi, x, y)
+                       + psi_values * np.ma.conjugate(partial_x(psi, x, y))) + y
     print "x components of probability current successfully calculated."
 
     print "Calculating the y components of the probability current..."
-    current_y = func_mod**2 * \
-        np.power(e, (-(x**2 + y**2))) * \
-        (partial_x(func_logmod, x, y) - x)
-        #(partial_y(func_phase, x, y) - x)
+    current_y = -0.5j*(np.ma.conjugate(psi_values) * partial_y(psi, x, y)
+                       + psi_values * np.ma.conjugate(partial_y(psi, x, y))) - x
     print "y component of probability current successfully calculated."
 
     return np.array([current_x, current_y])
@@ -135,20 +144,34 @@ def partial_x(function, xvals, yvals):
     """ Computes the partial derivative of a function of two variables f(x,y)
     with respect to x """
 
+    print "Differentiating with respect to x..."
+
     ret = [[diff(function, (xval, yval), (1, 0)) for xval in xvals[:][0]]
            for yval in yvals[:][0]]
 
-    return np.array(ret, dtype=float)
+    #ret = [[diff(function, (xval, yval), (1, 0)) for xval in xvals]
+    #       for yval in yvals]
+
+    print "Successfully differentiated with respect to x."
+
+    return np.array(ret, dtype=complex)
 
 
 def partial_y(function, xvals, yvals):
     """ Computes the partial derivative of a function of two variables f(x,y)
     with respect to y """
 
+    print "Differentiating with respect to y..."
+
     ret = [[diff(function, (xval, yval), (0, 1)) for xval in xvals[:][0]]
            for yval in yvals[:][0]]
 
-    return np.array(ret, dtype=float)
+    #ret = [[diff(function, (xval, yval), (0, 1)) for xval in xvals]
+    #       for yval in yvals]
+
+    print "Successfully differentiated with respect to y."
+
+    return np.array(ret, dtype=complex)
 
 
 def main():
@@ -158,11 +181,8 @@ def main():
     anal_func = generate_function()
     print "Chaotic analytic function successfully generated."
 
-    start = -3
-    end = 3
-    delta = 0.05
-    X = np.arange(start, end, delta)
-    Y = np.arange(start, end, delta)
+    X = np.arange(beg, end, delta)
+    Y = np.arange(beg, end, delta)
     grid_x, grid_y = np.meshgrid(X, Y)
 
     print "Generating value matrix for analytic function..."
@@ -173,20 +193,30 @@ def main():
     adjusted_values = np.zeros(func_values.shape, dtype='complex')
 
     print "Adjusting values by exponential..."
-    adjusted_values = func_values*e**(-0.5*(grid_x*grid_x + grid_y*grid_y))
+    #adjusted_values = np.power(abs(func_values), 2) * \
+    #    e**(-(grid_x*grid_x + grid_y*grid_y))
+    for i,x in enumerate(X):
+        for j,y in enumerate(Y):
+            adjusted_values[i][j] = func_values[i][j] * \
+                e**(-0.5*(x*x + y*y))
     print "Values successfully adjusted by exponential."
 
     print "Plotting surface of analytic function..."
     surface_plot(grid_x, grid_y, adjusted_values)
     print "Surface of chaotic analytic function successfully plotted."
 
-    print "Plotting contour of analytic function..."
+    #print "Plotting surface of isotropic analytic function..."
+    #surface_plot(grid_x, grid_y, func_values)
+    #print "Surface of chaotic analytic function successfully plotted."
+
+    print "Plotting contour of isotropic analytic function..."
     contour_plot(grid_x, grid_y, adjusted_values)
     print "Contour of chaotic analytic function successfully plotted."
 
     print "Calculating probability current..."
-    #prob_current = calculate_current(grid_x, grid_y, anal_func)
-    prob_current = calculate_current(grid_x, grid_y, lambda z: e**(-z**2))
+    prob_current = calculate_current(grid_x, grid_y, anal_func)
+    #prob_current = calculate_current(X, Y, anal_func)
+    #prob_current = calculate_current(grid_x, grid_y, lambda z: e**(-z**2))
     #prob_current = calculate_current(grid_x, grid_y, lambda z: 1)
     print "Probability current calculated."
 
