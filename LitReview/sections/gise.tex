@@ -4,18 +4,19 @@
 \subsection{Motivation}
 
 To begin exploring how these unphysical gauge dependent quantities can be
-circumvented, we derive a version of the Schr\"odinger equation for a particle
-in an electromagnetic field in terms of only gauge invariant quantities. This
-will be of particular interest when investigating the Aharanov-Bohm effect (see
-FUTURE RESEARCH).
+circumvented, we verify the continuity of this gauge dependent wavefunction and
+derive a version of the Schr\"odinger equation for a particle in an
+electromagnetic field in terms of only gauge invariant quantities. The regions
+of applicability of this reformulated equation are discussed, with reference to
+the lack of predictive power in the Aharonov-Bohm case.
 
 \subsection{The Standard Schr\"odinger Equation}
 
 The Schr\"odinger equation for a particle of mass $m$ and charge $q$ in an
-electromagnetic field is given by:
+electromagnetic field is given by
 \begin{align}
     i \hbar \dbydt{\Psi} = \frac{1}{2m}\mathbf{\Pi}^2 \Psi + qV \Psi
-    \label{eqn:schrodinger}
+    \label{eqn:schrodinger},
 \end{align}
 where $\Psi$ is the wavefunction, $V$ is the electric potential, $\mathbf{\Pi} =
 \mathbf{p} - q\mathbf{A}$ is the canonical momentum, $\mathbf{p} = - i \hbar
@@ -29,35 +30,36 @@ and $V$, but defining the probability density and current as
     \mathrm{and}~ \mathbf{J} &= \frac{1}{2m}\left( \Psi^* \mathbf{\Pi}
         \Psi + \Psi \mathbf{\Pi}^* \Psi^* \right),
 \end{align}
-we can reconstruct Equation \ref{eqn:schrodinger} in terms of only gauge
-invariant quantities.
+we can reconstruct \Cref{eqn:schrodinger} in terms of only the gauge
+invariant quantities $\rho$, $\mathbf{J}$ and the electric field $\mathbf{E}$.
 
 \subsection{Verifying Continuity}
 
-\noindent First we note that
+First we note that the probability density can be rearranged into the more
+useful form
 \begin{align}
     \mathbf{J} &= \frac{1}{m} \Ree{\Psi^* \mathbf{\Pi} \Psi} \\
                &= \frac{\hbar}{m} \Imm{\Psi^* \nabla \Psi} - \frac{q}{m} \rho
-                    \mathbf{A}
+                    \mathbf{A}.
 \end{align}
-Thus, the divergence of $\mathbf{J}$ is simply:
+Thus, the divergence of $\mathbf{J}$ is simply
 \begin{align}
     \div{J} &= \frac{\hbar}{m} \Imm{\Psi^* \nabla^2 \Psi} - \frac{q}{m} \left(
                 \mathbf{A} \cdot \nabla \rho + \rho \nabla \cdot
-                \mathbf{A} \right)
+                \mathbf{A} \right).
 \end{align}
-Inputting Equation \ref{eqn:schrodinger} changes causes the terms in
+Inputting Schr\"odinger's equation (\Cref{eqn:schrodinger}) causes the terms in
 $\mathbf{A}$ to cancel, and converts the \nth{2} order space
-derivative to a \nth{1} order time derivative, leaving just:
+derivative to a \nth{1} order time derivative, leaving just
 \begin{align}
     \div{J} &= -2 \Ree{\Psi^* \dbydt{\Psi}} \\
             &= - \left( \Psi^* \dbydt{\Psi}
                + \Psi \dbydt{\Psi^*} \right) \\
-            &= - \dbydt{\rho}
+            &= - \dbydt{\rho}.
 \end{align}
-Thus we confirm that the continuity equation holds as expected:
+Thus we confirm that the continuity equation holds as expected;
 \begin{align}
-    \div{J} + \dbydt{\rho} = 0
+    \div{J} + \dbydt{\rho} = 0.
     \label{eqn:continuity}
 \end{align}
 
@@ -65,7 +67,7 @@ Thus we confirm that the continuity equation holds as expected:
 
 Using this continuity equation, the definitions for the probability density and
 current and the equation for the electric field $\mathbf{E} = - \nabla V -
-\dbydt{\mathbf{A}}$, we showed that Equation \ref{eqn:schrodinger} can be recast
+\dbydt{\mathbf{A}}$, we showed that \Cref{eqn:schrodinger} can be recast
 in terms of only the gauge invariant variables $\mathbf{J}$, $\rho$ and
 $\mathbf{E}$.
 
@@ -77,61 +79,58 @@ Then the derivatives of $\Psi$ in space and time are
 \begin{align}
     \nabla \Psi &= \Psi \left( \frac{1}{2} \frac{\nabla
         \rho}{\rho} + i \nabla \theta \right) \\
-    \dot \Psi &= \Psi \left( \frac{1}{2} \frac{\dot
+        \mathrm{and}~ \dot \Psi &= \Psi \left( \frac{1}{2} \frac{\dot
         \rho}{\rho} + i \dot \theta \right),
 \end{align}
 where $\dot \Psi \defeq \dbydt{\Psi}$. This means that the probability current
-can be expressed in the simple form
+can be expressed in the simpler and more useful form
 \begin{align}
     \mathbf{J} = \frac{\hbar}{m} \rho \left( \nabla \theta - \frac{q}{\hbar}
-        \mathbf{A} \right)
+        \mathbf{A} \right).
     \label{eqn:current}
 \end{align}
 Using this, we show that the time derivative of $\frac{m \mathbf{J}}{\rho}$ is
-the simple expression
+the expression
 \begin{align}
     \frac{\partial}{\partial t}\left(\frac{m \mathbf{J}}{\rho}\right)
         = \hbar \nabla \dot \theta - q\mathbf{\dot A}.
 \end{align}
-Using the Schr\"odinger equation and the continuity equation to replace the
-$\dot \theta$ with the spatial derivatives $\nabla^2 \theta$, and replace the
-time derivative of $\mathbf{A}$ with $\mathbf{E}$ and $V$ via the equation
+Using the Schr\"odinger equation and the continuity equation to replace the time
+derivative $\dot \theta$ with the spatial derivatives $\nabla^2 \theta$, and
+replace the time derivative of $\mathbf{A}$ with $\mathbf{E}$ and $V$ via the
+equation
 \begin{align}
     \mathbf{E} = - \nabla V - \mathbf{\dot A},
 \end{align}
-we get a third order space derivative in $\rho$, a second order space derivative
-in $\theta$ and a first order space derivative in $\mathbf{A}$. Using Equation
-\ref{eqn:current}, the terms in $\mathbf{A}$ and $\theta$ can be combined into a
-single gauge invariant factor $\nabla \left( \frac{m \mathbf{J}^2}{2 \rho^2}
-\right)$, giving a version of the Schr\"odinger equation in terms of only gauge
-invariant quantities:
+we get a partial differential equation that is third order in space in $\rho$,
+second order in space in $\theta$ and first order in space in $\mathbf{A}$.
+Using \Cref{eqn:current}, the terms in $\mathbf{A}$ and $\theta$ can be combined
+into a single gauge invariant factor $\nabla \left( \frac{m \mathbf{J}^2}{2
+\rho^2} \right)$, giving a version of the Schr\"odinger equation in terms of
+only gauge invariant quantities:
 \begin{align}
     \frac{\partial}{\partial t} \left( \frac{m \mathbf{J}}{\rho} \right)
     =& \nabla \left( \frac{\hbar^2}{4m\rho} \nabla^2 \rho -
        \frac{\hbar^2}{8m\rho^2} \left(\nabla \rho \right)^2 - \frac{m
-       \mathbf{J}^2}{2 \rho^2} \right) + q\mathbf{E}
+       \mathbf{J}^2}{2 \rho^2} \right) + q\mathbf{E}.
     \label{eqn:gise}
 \end{align}
 
-Thus, we have a version of the Schr\"odinger equation for a particle in an
-electromagnetic field without any reference to gauge dependent quantities like
-the wavefunction or potentials. As Aharonov and Rohrlich demonstrate
+Thus, we have a reformulation of the Schr\"odinger equation for a particle in an
+electromagnetic field without any reference to gauge dependent quantities such
+as the wavefunction or potentials. As Aharonov and Rohrlich argue
 \cite{aharonov-rohrlich}, this formulation encounters problems when the initial
 wavefunction $\Psi(\mathbf{r}, 0)$ is only non-zero in two disjointed regions
 (i.e. $\Psi(\mathbf{r}, 0)$ is not simply connected). In particular,
 $\rho(\mathbf{r}, 0)$ and $\mathbf{J}(\mathbf{r}, 0)$ do not uniquely determine
 the wavefunction $\Psi(\mathbf{r}, t)$ for all future times $t > 0$.
-Interestingly, this is the Aharonov-Bohm case; exactly when the vector potential
-$\mathbf{A}$ has an important impact of the observable physics is when the gauge
-invariant reformulation lacks full predictive power.
+Interestingly, this is exactly the Aharonov-Bohm case; exactly when the vector
+potential $\mathbf{A}$ has an important impact of the observable physics is when
+the gauge invariant reformulation lacks full predictive power.
 
 In addition, the transfer to gauge invariant variables has increased the order
 of the space derivative; where originally the Schr\"odinger equation relates a
-first order time derivative to a second order space derivative, Equation
-\ref{eqn:gise} relates a first order time derivative to a third order space
+first order time derivative to a second order space derivative,
+\Cref{eqn:gise} relates a first order time derivative to a third order space
 derivative. It is clear, then, how much simpler the gauge dependent variables
-are to use for actual quantum calculations, particularly when your theory
-becomes relativistic as with the Higgs Mechanism
-\cite{higgs-1964,englert-brout,guralnik-hagen-kibble}.
-% Make sure I don't dig myself into a hole here, I talk earlier about how Higgs
-% did indeed formulate his mechanism in gauge invariant terms
+are to use for actual quantum calculations.

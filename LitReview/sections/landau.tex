@@ -7,48 +7,50 @@ Next we investigated the degrees of gauge freedom present in the Landau problem
 of a uniform everywhere magnetic field, $\mathbf{B} = B \basis{z}$. Of
 particular interest is how the ground state wavefunction gains the freedom from
 the choice of gauge. This is examined explicitly for the straight (sometimes
-called the Landau) and for the circular (sometimes called symmetric) gauges.
+called the Landau) and for the circular (sometimes called symmetric) gauges,
+with particular emphasis placed on the degeneracy of the circular gauge ground
+state due to the $f(x,y)$ that appears in the wavefunction solution, that can be
+any analytic function.
 
 \subsection{The Straight Gauge}
 
-In the straight gauge,
-\begin{align}
-    \mathbf{A} = Bx\basis{y}
-    \label{eqn:straight-gauge}
-\end{align}
-the ground state solution for the wavefunction is
+In the straight gauge, $\mathbf{A} = Bx\basis{y}$, the ground state solution for
+the wavefunction is
 \begin{align}
     \Psi_{s,0}(x,t) = \mathcal{N} e^{- \frac{1}{2} \mymu x^2} e^{-i \frac{1}{2}
         \hbar \Omega t},
 \end{align}
 where $\mathcal{N}$ is a normalisation factor and $\Omega = \frac{qB}{m}$ is the
 angular frequency of the solution \cite{murayama}. This ``Gaussian ridge''
-wavefunction is plotted in Figure \ref{subfig:straight-wavefunction}, demonstrating
-how it is invariant to translations in the $y$ direction.
+wavefunction is plotted in Figure \ref{subfig:straight-wavefunction},
+illustrating its invariance to translations in the $y$ direction.
 
-The associated probability density and phase
-of the wavefunction are
+The associated probability density and phase of the wavefunction are
 \begin{align}
     \rho = \mathcal{N}^2 e^{- \mymu x^2} \\
     \mathrm{and}~ \theta = - \frac{1}{2} \hbar \Omega t,
 \end{align}
-and the probability current is simply
+and the probability current, as plotted in Figure \ref{subfig:straight-current},
+is
 \begin{align}
     \mathbf{J}_s &= \frac{\hbar}{m} \mathcal{N}^2 e^{- \mymu x^2} \left(
         \nabla \left\{ -\frac{1}{2} \hbar \Omega t \right\} - \frac{q}{\hbar} B
         x \basis{y} \right) \\
     &= - \Omega \mathcal{N}^2 e^{- \mymu x^2} x\basis{y} ~\mathrm{as}~
-        \nabla \left\{ -\frac{1}{2} \hbar \Omega t \right\} = 0,
+        \nabla \left\{ -\frac{1}{2} \hbar \Omega t \right\} = 0.
 \end{align}
-as plotted in Figure \ref{subfig:straight-current}
+
+Importantly, this wavefunction is invariant under translations of both $y$ and
+$z$, due to the choice of gauge. In a sense, the gauge freedom we have in
+choosing $\mathbf{A}$ gives us the symmetry in $\Psi_{s,0}$.
 
 \begin{figure}
     \centering
     \begin{subfigure}{0.45\linewidth}
         \centering
         \includegraphics[width=\linewidth]{straight-gauge-wavefunction}
-        \caption{The ground state wavefunction. Note the independence of the $y$
-            coordinate.}
+        \caption{The modulus of the ground state wavefunction. Note the
+            independence of the $y$ coordinate.}
         \label{subfig:straight-wavefunction}
     \end{subfigure}
     \begin{subfigure}{0.45\linewidth}
@@ -62,9 +64,6 @@ as plotted in Figure \ref{subfig:straight-current}
     problem in the straight gauge, $\mathbf{A} = Bx\basis{y}$.}
     \label{fig:straight}
 \end{figure}
-
-% TODO: Talk about the transfer of freedom to the position of the ridge, and the
-% invariance under y and z translations
 
 \subsection{The Circular Gauge}
 
@@ -89,7 +88,7 @@ $f(F,\phi) = Fe^{i \phi}$, then this wavefunction has probability density
 and the probability current corresponding to this wavefunction, as plotted in
 Figure \ref{subfig:circular-current}, is
 \begin{align}
-    \mathbf{J}_c(f) = \F^2 \mathcal{M} e^{- \mu
+    \mathbf{J}_c(f) = F^2 \mathcal{M} e^{- \mu
         \left( x^2 + y^2 \right)} \left( \nabla \phi - \mu \left(
         x\basis{y} - y\basis{x} \right) \right),
 \end{align}
@@ -101,8 +100,8 @@ where $\mathcal{M} = \frac{\hbar}{m} \mathcal{N}^2$ and $\mu = \frac{1}{2}
     \begin{subfigure}{0.45\linewidth}
         \centering
         \includegraphics[width=\linewidth]{circular-gauge-wavefunction}
-        \caption{The ground state wavefunction solution to the Landau problem when
-            using the circular gauge.}
+        \caption{The modulus of the ground state wavefunction solution to the
+            Landau problem when using the circular gauge.}
         \label{subfig:circular-wavefunction}
     \end{subfigure}
     \begin{subfigure}{0.45\linewidth}
@@ -118,16 +117,25 @@ where $\mathcal{M} = \frac{\hbar}{m} \mathcal{N}^2$ and $\mu = \frac{1}{2}
     \label{fig:circular}
 \end{figure}
 
+Whereas previously with the straight gauge the wavefunction is symmetric under
+$y$ translations due to the choice of the gauge, now our wavefunction is
+rotatinoally symmetric; choosing the gauge is equivalent to choosing the
+symmetry of the resulting wavefunction.
+
 Note how the probability current spins clockwise around the central peak of the
 wavefunction. Additionally, the current points at all times parallel or
 anti-parallel to the symmetry of the wavefunction; with the straight gauge there
-is $y$ translation invariance, and $\mathbf{J}_s$ points always in the $\pm y$
-direction, while for the circular gauge there is rotational invariance and
-$\mathbf{J}_c$ always points tangentially.
+is $y$ translation invariance due to our choice of gauge, and $\mathbf{J}_s$ points always in the $\pm y$
+direction, while for the circular gauge there is rotational invariance due to
+our choice of gauge, and
+$\mathbf{J}_c$ always points tangentially. Note that the gauge is required to
+have zero $z$ component, so this symmetry of the wavefunction is due to the
+underlying magnetic field, \textit{not} the particular choice of gauge.
 
-Of particular interest here is the analytic function $f(x,y)$. In a sense, the
-freedom previously present when choosing the gauge has been transferred to this
-ground state wavefunction as a degeneracy present from the choice of $f(x,y)$.
+Of particular interest here is the analytic function $f(x,y)$, which gives an
+infinite degeneracy to the ground state. This degeneracy is discussed further,
+with reference to a comparison of the stringency of the continuity of the
+resulting probability current.
 
 \subsection{Equivalence of probability currents}
 
@@ -162,13 +170,14 @@ Thus, the probability current is
        x\basis{y} \\
        &= \mathbf{J}_s.
 \end{align}
+
 What this means is that one can choose a particular value of $f(x,y)$ for which
 the circular gauge reduces to the straight gauge. This raises the interesting
 question of whether all values of $f(x,y)$ are permitted, and whether the
 $\mathbf{J}_c(f)$ currents form a basis for all the possible $\mathbf{J}$
 values.
 
-\subsection{Locking the analytic of $f(x,y)$ to continuity}
+\subsection{Locking the analyticity of $f(x,y)$ to continuity}
 
 Here we demonstrate that all functions of $f(x,y)$, provided they are analytic
 with no other constraints, produce a respectable or physical probability
@@ -301,7 +310,7 @@ Cauchy-Riemann equations.
 
 The condition of analyticity on a complex function is extremely stringent;
 unlike in real analysis, complex analyticity implies infinite differentiability.
-% TODO: Find a reference for this
+% TODO: Find a reference for this, or is it not entirely relevant
 An important result of complex analysis is that any analytic real function can
 be extended or analytically continued into an analytic function on the entire
 complex plane. This means that any complex function can be uniquely specified by
@@ -310,12 +319,10 @@ determined by the value along the real axis, $f(x,0)$. Thus, $f(x,y)$ is
 essentially two functions $f_R$ and $f_I$ of one variable, $x$. These two
 functions aren't independent, however, due to Cauchy-Riemann.
 
-On the other hand, $\mathbf{J}$ is essentially one function of two variables.
-% TODO: I know John said this, but unless you understand it, don't put it in.
-
 The condition of divergencelessness on the probability current means that $J_x =
 - J_y$. Thus $\mathbf{J}$ is essentially one function of two variables, $x$ and
-$y$.
+$y$. In this plane, this single function representing the divergenceless
+probability current can have any value; it is unrestrained.
 
 A divergenceless quantity can therefore still take unique values across the
 whole $x,y$ plane, whereas an analytic function is entirely uniquely determined
@@ -323,9 +330,3 @@ by just the $y = 0$ line. Therefore, the condition of analyticity is more
 stringent than the condition of continuity; every analytic $f(x,y)$ has a
 corresponding divergenceless $\mathbf{J}_c$, but not every divergenceless
 $\mathbf{J}$ has a corresponding $f(x,y)$.
-
-\subsection{Chaotic Analytic Function Generation}
-
-To illustrate this, we employ a Monte Carlo random analytic function generation
-technique etc...
-% TODO: Finish this, and maybe put it in future research if I don't finish it

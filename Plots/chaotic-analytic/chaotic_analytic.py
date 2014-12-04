@@ -24,7 +24,10 @@ ang_freq = 2
 
 beg = -3
 end = 3
-delta = 0.25
+delta = 0.1
+
+plotdir = "plots/"
+ext = ".eps"
 
 def surface_plot(x, y, values):
     """ Plots the matrix of (complex) values from the chaotic analytic function
@@ -39,13 +42,28 @@ def surface_plot(x, y, values):
     return True
 
 
-def contour_plot(x, y, values):
+def contour_plot(x, y, values, title=False, fname=False):
     """ Plots the matrix of (complex) values from the chaotic analytic function
     as contour plot. """
 
     fig = plt.figure()
 
     cont_plot = plt.contourf(x, y, abs(values), 100, cmap=hot)
+
+    plt.tick_params(\
+        axis='both', which='both',
+        bottom='off', top='off', left='off', right='off',
+        labelbottom='off', labeltop='off', labelleft='off', labelright='off')
+
+    plt.xlabel("$x$")
+    plt.ylabel("$y$")
+
+    if title:
+        plt.title(title)
+
+    if fname:
+        plt.savefig(plotdir + fname + ext)
+        print "Contour plot successfully saved."
 
     return True
 
@@ -92,7 +110,7 @@ def quiv_plot(x, y, vector):
 def generate_function():
     """ Generates the random chaotic analytic function. """
 
-    trunc_index = 50 # The index to truncate to in Taylor expansion
+    trunc_index = 100 # The index to truncate to in Taylor expansion
 
     coeff_real = np.array([rand.normal(sqrt(0.5/factorial(n)), sqrt(0.5/factorial(n)))
                            for n in xrange(trunc_index)])
@@ -210,7 +228,9 @@ def main():
     #print "Surface of chaotic analytic function successfully plotted."
 
     print "Plotting contour of isotropic analytic function..."
-    contour_plot(grid_x, grid_y, adjusted_values)
+    contour_plot(grid_x, grid_y, adjusted_values,
+                 title="Isotropic Stationary Random Function",
+                 fname="caf")
     print "Contour of chaotic analytic function successfully plotted."
 
     print "Calculating probability current..."

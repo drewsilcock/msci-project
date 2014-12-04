@@ -4,6 +4,9 @@
 \usepackage[super]{nth}
 \usepackage{subcaption}
 \usepackage{cleveref}
+\usepackage{braket}
+\usepackage{wrapfig}
+\usepackage{color}
 
 \DeclareGraphicsExtensions{.pdf,.eps,.png,.jpg}
 \graphicspath{{figures/}}
@@ -27,5 +30,8 @@
 \newcommand{\basis}[1]{\mathbf{\hat #1 }}
 \newcommand{\mymu}[0]{\frac{m \Omega}{\hbar}}
 \newcommand{\colvec}[3]{\begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix}}
+\newcommand{\comm}[2]{\left[ #1 , #2 \right]}
+\newcommand{\moyal}[2]{\left\{ \left\{ #1, #2 \right\} \right\}}
+\newcommand{\poiss}[2]{\left\{ #1, #2 \right\}}
 
 \renewcommand{\div}[1]{\nabla \cdot \mathbf{ #1 }}
