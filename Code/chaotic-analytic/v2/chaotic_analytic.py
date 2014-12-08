@@ -59,20 +59,43 @@ def generate_values(X, Y, func_variants):
     try:
         x_deriv_values = np.array([[x_deriv_func(x, y) for x in X]
                                    for y in Y])
-    except RuntimeWarning:
+    except RuntimeWarning as w:
         print "Warning! Warning!"
-        sys.exit(1)
+        raise w
 
     try:
         y_deriv_values = np.array([[y_deriv_func(x, y) for x in X]
                                    for y in Y])
-    except RuntimeWarning:
+    except RuntimeWarning as w:
         print "Warning! Warning!"
-        sys.exit(1)
+        raise w
 
     return (func_values, conj_values, x_deriv_values, y_deriv_values)
 
 
 def calculate_current(x, y, value_variants):
+    """ Takes all the values associated with the chaotic analytic function, and
+    uses them to calculate the probability current for the circular gauge
+    Landau problem. """
 
-    current_x = 
+    (func_values, conj_values, x_deriv_values, y_deriv_values) = \
+        value_variants
+
+    current_x = np.exp(-(x*x + y*y)) * \
+        (conj_values * (x_deriv_values - x)).imag + \
+        y * abs(func_values)**2
+
+    current_y = np.exp(-(x*x + y*y)) * \
+        (conj_values * (y_deriv_values - y)).imag - \
+        x * abs(func_values)**2
+
+    return (current_x, current_y)
+
+
+def adjust_function(x, y, func_values):
+    """ Turns the chaotic analytic function into isotropic stationary function
+    given by H(z) = e^{-zz^*} f(z) """
+
+    adjusted_values = abs(func_values)**2 * np.exp(-(x*x + y*y))
+
+    return adjusted_values
