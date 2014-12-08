@@ -6,10 +6,10 @@ import matplotlib.pyplot as plt
 import chaotic_analytic as ca
 import plotting as pl
 
-beg = -10
-end = 10
-delta = 0.5
-trunc_index = 150
+beg = -1
+end = 1
+delta = 0.01
+trunc_index = 178  # 1/factorial(178) is zero
 
 
 def main():
@@ -36,11 +36,6 @@ def main():
     isotropic_values = ca.adjust_function(grid_x, grid_y, func_values)
     print "...done\n"
 
-    # print func_values[0]
-    # print conj_values[0]
-    # print x_deriv_values[0]
-    # print y_deriv_values[0]
-
     print "Calculating probability current..."
     prob_current = ca.calculate_current(grid_x, grid_y, value_variants)
     print "...done\n"
@@ -48,20 +43,21 @@ def main():
     print "Plotting isotropic stationary function as contour plot..."
     pl.contour_plot(grid_x, grid_y, isotropic_values,
                     title=r"Isotropic chaotic function $H(z) = e^{-zz^*}f(z)$, " + str(trunc_index) + " terms",
-                    fname="isotropic-contour-{}-big".format(trunc_index))
+                    fname="isotropic-contour-{}-terms-{}-to-{}".format(trunc_index, beg, end),
+                    beg=beg, end=end)
     print "...done\n"
 
     print "Plotting probability current as quiver plot..."
     pl.quiver_plot(grid_x, grid_y, prob_current,
                    title=r"Probability Current, $\mathbf{J}_c$, " + str(trunc_index) + " terms",
-                   fname="prob-current-quiver-{}-big".format(trunc_index),
+                   fname="prob-current-quiver-{}-terms-{}-to-{}".format(trunc_index, beg, end),
                    beg=beg, end=end)
     print "...done\n"
 
     print "Plotting probability current as stream plot..."
     pl.stream_plot(grid_x, grid_y, prob_current,
                    title=r"Probability Current, $\mathbf{J}_c$, " + str(trunc_index) + " terms",
-                   fname="prob-current-stream-{}-big".format(trunc_index),
+                   fname="prob-current-stream-{}-terms-{}-to-{}".format(trunc_index, beg, end),
                    beg=beg, end=end)
     print "...done\n"
 

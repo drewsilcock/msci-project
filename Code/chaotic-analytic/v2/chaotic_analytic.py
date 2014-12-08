@@ -13,11 +13,9 @@ def generate_function(trunc_index=100):
     (function, conjugate function, partial derivative w.r.t. x, partial
     derivative w.r.t. y) """
 
-    coeff_real = np.array([rnd.normal(sqrt(0.5/factorial(n)),
-                                      sqrt(0.5/factorial(n)))
+    coeff_real = np.array([rnd.normal(0, sqrt(1/(2 * factorial(n))))
                            for n in xrange(trunc_index)])
-    coeff_imag = np.array([rnd.normal(sqrt(0.5/factorial(n)),
-                                      sqrt(0.5/factorial(n)))
+    coeff_imag = np.array([rnd.normal(0, sqrt(1/(2 * factorial(n))))
                            for n in xrange(trunc_index)])
 
     # # Temporary override for testing purposes

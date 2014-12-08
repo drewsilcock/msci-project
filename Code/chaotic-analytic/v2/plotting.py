@@ -9,7 +9,7 @@ plotdir = "plots/"
 ext = ".eps"
 
 
-def contour_plot(x, y, values, title=False, fname=False):
+def contour_plot(x, y, values, title=False, fname=False, beg=False, end=False):
     """ Plots the matrix of (complex) values from the chaotic analytic function
     as contour plot. """
 
@@ -24,6 +24,10 @@ def contour_plot(x, y, values, title=False, fname=False):
 
     plt.xlabel("$x$")
     plt.ylabel("$y$")
+
+    if beg and end:
+        plt.xlim(beg, end)
+        plt.ylim(beg, end)
 
     if title:
         plt.title(title)
@@ -76,7 +80,7 @@ def stream_plot(x, y, vector, title=False, fname=False, beg=False, end=False):
     lw = 5 * mag/mag.max()
 
     vect_plot = plt.streamplot(x, y, abs(vector[0]), abs(vector[1]),
-                               linewidth=2, color='blue', density=0.6)
+                               linewidth=lw, color='blue', density=0.6)
 
     plt.xlabel("$x$")
     plt.ylabel("$y$")
